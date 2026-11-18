@@ -39,6 +39,17 @@ wait_for() {
     sleep 2
   done
   printf 'Did not find %s\n' "$1" >&2
+  if [[ -s "$snapshot" ]]; then
+    python3 - "$snapshot" <<'PY'
+import sys
+import xml.etree.ElementTree as ET
+for node in ET.parse(sys.argv[1]).iter("node"):
+    label = node.get("text") or node.get("content-desc")
+    if label:
+        print(node.get("package"), label)
+PY
+  fi
+  adb logcat -d -s AndroidRuntime:E | tail -40 | grep -E 'FATAL|Portario|portario|Exception|Error' || true
   return 1
 }
 tap() {
@@ -75,7 +86,9 @@ capture() {
   adb exec-out screencap -p > "$out/$1.png"
 }
 launch() {
-  adb shell am start -W -n "$activity" >/dev/null
+  adb shell input keyevent KEYCODE_WAKEUP
+  adb shell wm dismiss-keyguard
+  adb shell am start -W -n "$activity"
 }
 share() {
   adb shell am start -W -n "$activity" -a android.intent.action.SEND -t text/plain \
@@ -101,6 +114,7 @@ adb shell pm clear "$package" >/dev/null
 adb shell cmd locale set-app-locales "$package" --user 0 --locales pt-BR >/dev/null
 adb shell svc wifi disable
 adb shell svc data disable >/dev/null 2>&1 || true
+echo 'Opening offline catalog'
 launch
 wait_for 'Breath of the Wild'
 capture 01-explorar

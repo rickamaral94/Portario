@@ -271,7 +271,6 @@ private fun PortarioScreen(model: PortarioViewModel, askNotifications: () -> Uni
     val filtered = remember(games, query, filters) {
         games.filter { matchesFilters(it, query, filters) }
     }
-    LaunchedEffect(query, filters) { list.scrollToItem(0) }
     val detail = games.find { it.id == model.selectedGame }
     val variant = detail?.variants?.find { it.id == model.selectedVariant } ?: detail?.variants?.firstOrNull()
     val trackById = tracks.associateBy { it.id }
