@@ -115,9 +115,13 @@ adb shell input keyevent 4
 tap 'Adicionar'
 wait_for 'Link do GitHub'
 capture 03-adicionar
-tap 'Explorar'
-tap_exact '×'
+echo 'Preparing landscape capture from a fresh catalog'
+adb shell pm clear "$package" >/dev/null
+adb shell cmd locale set-app-locales "$package" --user 0 --locales pt-BR >/dev/null
+launch
+wait_for 'Breath of the Wild'
 tap 'Tears of the Kingdom'
+wait_for 'Voltar'
 adb shell wm user-rotation lock 1
 wait_for 'Tears of the Kingdom'
 adb shell input keyevent KEYCODE_DPAD_DOWN KEYCODE_DPAD_DOWN
