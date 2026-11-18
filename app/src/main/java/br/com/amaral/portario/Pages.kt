@@ -209,14 +209,16 @@ fun AddPage(model: PortarioViewModel) {
 @Composable
 private fun PreviewCard(preview: SourcePreview, model: PortarioViewModel) {
     var advanced by rememberSaveable { mutableStateOf(false) }
-    var channel by rememberSaveable { mutableStateOf(Channel.STABLE) }
-    var filter by rememberSaveable { mutableStateOf("") }
-    var pinned by rememberSaveable { mutableStateOf(false) }
-    var asset by rememberSaveable { mutableStateOf("") }
-    val release = remember(preview, channel, filter) { selectedRelease(preview.releases, preview.ref, channel, filter) }
+    var channel by rememberSaveable { mutableStateOf(preview.track?.let { Channel.valueOf(it.channel) } ?: preview.variant.channel) }
+    var filter by rememberSaveable { mutableStateOf(preview.track?.filter ?: preview.variant.filter) }
+    var pinned by rememberSaveable { mutableStateOf(preview.ref.tag != null && preview.track?.pinnedTag == preview.ref.tag) }
+    var asset by rememberSaveable { mutableStateOf(preview.track?.assetName.orEmpty()) }
+    val release = remember(preview, channel, filter) {
+        selectedRelease(preview.releases, preview.ref, channel, filter, preview.variant.setup == Setup.MANUAL)
+    }
     val options = release?.compatibleAssets(abis, filter).orEmpty()
     val preferred = release?.recommended(abis, filter)?.name.orEmpty()
-    val choice = options.find { it.name == asset }?.name ?: preferred
+    val choice = preferredAsset(options, asset)?.name ?: preferred
     Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(17.dp)).background(Panel).padding(13.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(preview.ref.repository.substringAfter('/'), style = MaterialTheme.typography.titleLarge)

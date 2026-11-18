@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 enum class Destination { EXPLORE, LIBRARY, ADD }
 
-data class SourcePreview(val ref: GithubRef, val releases: List<Release>)
+data class SourcePreview(val ref: GithubRef, val releases: List<Release>, val track: Track?, val variant: Variant)
 
 class PortarioViewModel(application: Application) : AndroidViewModel(application) {
     val app = application as PortarioApp
@@ -108,7 +108,8 @@ class PortarioViewModel(application: Application) : AndroidViewModel(application
         viewModelScope.launch {
             try {
                 val releases = app.releases.check(ref, true)
-                if (parseGithubRef(input) == ref) preview = SourcePreview(ref, releases)
+                val candidate = catalog.value.flatMap { it.variants }.find { it.ref.key == ref.key } ?: Variant.custom(ref)
+                if (parseGithubRef(input) == ref) preview = SourcePreview(ref, releases, dao.track(candidate.id), candidate)
             } catch (cancelled: CancellationException) { throw cancelled }
             catch (error: Exception) { if (parseGithubRef(input) == ref) addError = errorLabel(error) }
             finally { adding = false }
@@ -116,8 +117,7 @@ class PortarioViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun accept(source: SourcePreview, channel: Channel, filter: String, pinned: Boolean, picked: String) = launchAction {
-        val found = catalog.value.flatMap { it.variants }.find { it.ref.key == source.ref.key }
-        val variant = found ?: Variant.custom(source.ref)
+        val variant = source.variant
         val existing = dao.track(variant.id)
         val tag = source.ref.tag.takeIf { pinned }
         val initialRelease = if (source.ref.tag == null || pinned)
