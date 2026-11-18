@@ -204,14 +204,29 @@ XML
   tap_in_detail 'Instalar'
   wait_for 'A assinatura difere'
   adb shell dumpsys package org.diasurgical.devilutionx | grep 'versionCode=1 '
+  echo 'Signature mismatch rejected and the installed fixture was preserved'
   adb uninstall org.diasurgical.devilutionx
   rm -rf "$fixture"
 
   tap_in_detail 'Instalar'
   tap_exact 'Install'
   wait_for 'Instalado'
+  adb shell pm path org.diasurgical.devilutionx
   tap_in_detail 'Abrir'
-  adb shell dumpsys activity activities | grep -E 'topResumedActivity.*org.diasurgical.devilutionx'
+  launched=false
+  for attempt in $(seq 1 12); do
+    if adb shell dumpsys activity activities | grep -Ei '(topResumedActivity|mResumedActivity).*org.diasurgical.devilutionx' ||
+      adb shell dumpsys window | grep -E 'mCurrentFocus=.*org.diasurgical.devilutionx'; then
+      launched=true
+      break
+    fi
+    sleep 1
+  done
+  if [[ "$launched" != true ]]; then
+    adb shell dumpsys activity activities | grep -Ei '(resumedActivity|org.diasurgical.devilutionx)' | head -12 || true
+    printf 'Portário requested launch but the target app did not reach the foreground\n' >&2
+    exit 1
+  fi
 fi
 
 adb shell wm size reset
