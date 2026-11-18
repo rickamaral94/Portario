@@ -116,10 +116,7 @@ tap 'Adicionar'
 wait_for 'Link do GitHub'
 capture 03-adicionar
 tap 'Explorar'
-tap 'Buscar jogo ou projeto'
-adb shell input keyevent 123 67 67 67 67 67
-adb shell input text TOTK
-adb shell input keyevent 4
+tap_exact '×'
 tap 'Tears of the Kingdom'
 adb shell wm user-rotation lock 1
 wait_for 'Tears of the Kingdom'
@@ -180,7 +177,9 @@ XML
   build_tools=$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)
   "$build_tools/aapt2" link -I "$ANDROID_HOME/platforms/android-36/android.jar" \
     --manifest "$fixture/AndroidManifest.xml" -o "$fixture/unsigned.apk"
-  "$build_tools/apksigner" sign --ks "$HOME/.android/debug.keystore" --ks-pass pass:android \
+  keytool -genkeypair -keystore "$fixture/fixture.jks" -storepass android -keypass android \
+    -alias fixture -keyalg RSA -keysize 2048 -validity 2 -dname 'CN=Portario Test Fixture' -noprompt
+  "$build_tools/apksigner" sign --ks "$fixture/fixture.jks" --ks-pass pass:android \
     --out "$fixture/signed.apk" "$fixture/unsigned.apk"
   adb install "$fixture/signed.apk"
   adb shell appops set "$package" REQUEST_INSTALL_PACKAGES allow

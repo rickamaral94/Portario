@@ -59,6 +59,7 @@ class PortarioViewModel(application: Application) : AndroidViewModel(application
     var selectedGame by mutableStateOf<String?>(null)
     var selectedVariant by mutableStateOf<String?>(null)
     var lastGame by mutableStateOf<String?>(null)
+    var lastVariant by mutableStateOf<String?>(null)
     var input by mutableStateOf("")
     var preview by mutableStateOf<SourcePreview?>(null)
         private set
@@ -79,6 +80,7 @@ class PortarioViewModel(application: Application) : AndroidViewModel(application
         selectedGame = null
         selectedVariant = null
         lastGame = null
+        lastVariant = null
         destination = next
     }
 
@@ -86,6 +88,7 @@ class PortarioViewModel(application: Application) : AndroidViewModel(application
         selectedGame = game.id
         selectedVariant = variant.id
         lastGame = game.id
+        lastVariant = variant.id
         if (caches.value[ReleaseRepository.cacheKey(variant.withTrack(tracks.value.find { it.id == variant.id }))] == null) {
             check(variant, false, openAssets = false)
         }
@@ -119,7 +122,7 @@ class PortarioViewModel(application: Application) : AndroidViewModel(application
     fun accept(source: SourcePreview, channel: Channel, filter: String, pinned: Boolean, picked: String) = launchAction {
         val variant = source.variant
         val existing = dao.track(variant.id)
-        val tag = source.ref.tag.takeIf { pinned }
+        val tag = if (source.ref.tag == null) existing?.pinnedTag else source.ref.tag.takeIf { pinned }
         val initialRelease = if (source.ref.tag == null || pinned)
             selectedRelease(source.releases, source.ref, channel, filter, variant.setup == Setup.MANUAL) else null
         val baseline = initialRelease?.fingerprint().orEmpty()

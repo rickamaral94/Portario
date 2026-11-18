@@ -28,6 +28,10 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.TextFieldLineLimits
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -260,11 +264,12 @@ private fun PortarioScreen(model: PortarioViewModel, askNotifications: () -> Uni
     val toast = remember { SnackbarHostState() }
     val list = rememberLazyListState()
     val libraryList = rememberLazyListState()
-    var search by rememberSaveable { mutableStateOf("") }
+    val search = rememberTextFieldState()
     var filters by rememberSaveable { mutableStateOf(listOf("", "", "", "", "")) }
     var filterOpen by rememberSaveable { mutableStateOf(false) }
-    val filtered = remember(games, search, filters) {
-        games.filter { matchesFilters(it, search, filters) }
+    val query = search.text.toString()
+    val filtered = remember(games, query, filters) {
+        games.filter { matchesFilters(it, query, filters) }
     }
     val detail = games.find { it.id == model.selectedGame }
     val variant = detail?.variants?.find { it.id == model.selectedVariant } ?: detail?.variants?.firstOrNull()
@@ -299,7 +304,7 @@ private fun PortarioScreen(model: PortarioViewModel, askNotifications: () -> Uni
                 if (showList) Column(Modifier.weight(if (wide && detail != null) 0.52f else 1f)) {
                     Brand(compact = wide)
                     when (model.destination) {
-                        Destination.EXPLORE -> Explore(filtered, search, { search = it }, filters.count { it.isNotEmpty() },
+                        Destination.EXPLORE -> Explore(filtered, search, filters.count { it.isNotEmpty() },
                             { filterOpen = true }, list, model.lastGame.takeIf { detail == null }, model::show)
                         Destination.LIBRARY -> LibraryPage(model, games, tracks, caches, transferById, periodic, libraryList,
                             askNotifications)
@@ -357,7 +362,8 @@ private fun NavGlyph(route: Destination, color: Color) {
 }
 
 @Composable
-private fun Explore(games: List<Game>, search: String, edit: (String) -> Unit, filters: Int, filter: () -> Unit,
+@OptIn(ExperimentalMaterial3Api::class)
+private fun Explore(games: List<Game>, search: TextFieldState, filters: Int, filter: () -> Unit,
                     list: LazyListState, restore: String?, open: (Game, Variant) -> Unit) {
     val focus = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
@@ -372,9 +378,12 @@ private fun Explore(games: List<Game>, search: String, edit: (String) -> Unit, f
     }
     Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 7.dp),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedTextField(search, edit, Modifier.weight(1f).focusRing(),
-            singleLine = true, label = { Text(stringResource(R.string.search)) },
-            trailingIcon = if (search.isNotBlank()) ({ TextButton({ edit("") }) { Text("×") } }) else null)
+        OutlinedTextField(search, Modifier.weight(1f).focusRing(), lineLimits = TextFieldLineLimits.SingleLine,
+            keyboardOptions = KeyboardOptions(showKeyboardOnFocus = false),
+            label = { Text(stringResource(R.string.search)) },
+            trailingIcon = if (search.text.isNotBlank()) ({
+                TextButton({ search.edit { replace(0, length, "") } }) { Text("×") }
+            }) else null)
         Action(if (filters == 0) stringResource(R.string.filters) else stringResource(R.string.filters_count, filters), click = filter)
     }
     Row(Modifier.fillMaxWidth().padding(start = 18.dp, end = 18.dp, top = 3.dp, bottom = 6.dp),

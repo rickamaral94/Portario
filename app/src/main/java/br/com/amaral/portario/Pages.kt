@@ -12,10 +12,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -130,6 +133,22 @@ fun LibraryPage(model: PortarioViewModel, games: List<Game>, tracks: List<Track>
         }
     }
     val updates = tracks.count { publication(current[it.id], it, installed[it.id] != null, installed[it.id]?.code()) == Publication.NEW_RELEASE }
+    val ordered = tracks.sortedByDescending { track ->
+        (if (track.favorite) 2 else 0) + if (publication(current[track.id], track,
+            installed[track.id] != null, installed[track.id]?.code()) == Publication.NEW_RELEASE) 4 else 0
+    }
+    val restore = model.lastVariant.takeIf { model.selectedGame == null }
+    val focus = remember { FocusRequester() }
+    LaunchedEffect(restore) {
+        if (restore != null) {
+            val index = ordered.indexOfFirst { it.id == restore }
+            if (index >= 0) {
+                if (list.layoutInfo.visibleItemsInfo.none { it.index == index + 2 }) list.scrollToItem(index + 2)
+                delay(60)
+                runCatching { focus.requestFocus() }
+            }
+        }
+    }
     LazyColumn(state = list, modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item {
@@ -156,10 +175,7 @@ fun LibraryPage(model: PortarioViewModel, games: List<Game>, tracks: List<Track>
         if (tracks.isEmpty()) item {
             Note(stringResource(R.string.library_empty), modifier = Modifier.padding(top = 8.dp))
         }
-        items(tracks.sortedByDescending { track ->
-            (if (track.favorite) 2 else 0) + if (publication(current[track.id], track,
-                    installed[track.id] != null, installed[track.id]?.code()) == Publication.NEW_RELEASE) 4 else 0
-        }, key = { it.id }) { track ->
+        items(ordered, key = { it.id }) { track ->
             val (game, variant) = byId[track.id] ?: return@items
             val release = current[track.id]
             val info = installed[track.id]
@@ -175,7 +191,8 @@ fun LibraryPage(model: PortarioViewModel, games: List<Game>, tracks: List<Track>
                 track.packageId.isNotBlank() -> R.string.unknown_installation
                 else -> null
             }
-            GameRow(game, variant, status = label?.let { stringResource(it) }) { model.show(game, variant) }
+            GameRow(game, variant, if (track.id == restore) Modifier.focusRequester(focus) else Modifier,
+                status = label?.let { stringResource(it) }) { model.show(game, variant) }
         }
     }
 }
