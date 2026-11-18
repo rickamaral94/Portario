@@ -15,7 +15,7 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew testDebugUnitTest lintDebug assembleDebug
+      - run: ./gradlew testDebugUnitTest assembleDebug
       - run: |
           cp app/build/outputs/apk/debug/app-debug.apk Portario-0.1.0-debug.apk
           sha256sum Portario-0.1.0-debug.apk > Portario-0.1.0-debug.apk.sha256
@@ -45,4 +45,12 @@ jobs:
         with:
           name: Portario-screenshots
           path: screenshots/*.png
+          if-no-files-found: ignore
+      - run: ./gradlew lintDebug
+        if: always()
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: Portario-lint
+          path: app/build/reports/lint-results-debug.txt
           if-no-files-found: ignore

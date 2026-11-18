@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.KeyEvent as NativeKey
 import android.view.MotionEvent
 import android.view.InputDevice
+import android.view.Window
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
@@ -67,6 +68,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        installControllerInput()
         handleIncoming(intent)
         setContent {
             PortarioTheme {
@@ -128,39 +130,44 @@ class MainActivity : ComponentActivity() {
         if (runCatching { startActivity(intent) }.isFailure) model.notices.tryEmit(R.string.launch_failed)
     }
 
-    override fun dispatchKeyEvent(event: NativeKey): Boolean {
-        if (event.keyCode == NativeKey.KEYCODE_BUTTON_A) {
-            return super.dispatchKeyEvent(NativeKey(event.downTime, event.eventTime, event.action,
-                NativeKey.KEYCODE_DPAD_CENTER, event.repeatCount))
-        }
-        if (event.keyCode == NativeKey.KEYCODE_BUTTON_B) {
-            if (event.action == NativeKey.ACTION_UP) onBackPressedDispatcher.onBackPressed()
-            return true
-        }
-        return super.dispatchKeyEvent(event)
-    }
-
-    override fun dispatchGenericMotionEvent(event: MotionEvent): Boolean {
-        if (event.action == MotionEvent.ACTION_MOVE && event.isFromSource(InputDevice.SOURCE_JOYSTICK)) {
-            val x = event.getAxisValue(MotionEvent.AXIS_X)
-            val y = event.getAxisValue(MotionEvent.AXIS_Y)
-            val code = when {
-                kotlin.math.abs(x) > kotlin.math.abs(y) && x > .55f -> NativeKey.KEYCODE_DPAD_RIGHT
-                kotlin.math.abs(x) > kotlin.math.abs(y) && x < -.55f -> NativeKey.KEYCODE_DPAD_LEFT
-                y > .55f -> NativeKey.KEYCODE_DPAD_DOWN
-                y < -.55f -> NativeKey.KEYCODE_DPAD_UP
-                else -> 0
-            }
-            if (code != 0) {
-                if (event.eventTime - lastStick >= 180) {
-                    lastStick = event.eventTime
-                    dispatchKeyEvent(NativeKey(NativeKey.ACTION_DOWN, code))
-                    dispatchKeyEvent(NativeKey(NativeKey.ACTION_UP, code))
+    private fun installControllerInput() {
+        val original = window.callback
+        window.callback = object : Window.Callback by original {
+            override fun dispatchKeyEvent(event: NativeKey): Boolean {
+                return when (event.keyCode) {
+                    NativeKey.KEYCODE_BUTTON_A -> original.dispatchKeyEvent(NativeKey(event.downTime,
+                        event.eventTime, event.action, NativeKey.KEYCODE_DPAD_CENTER, event.repeatCount))
+                    NativeKey.KEYCODE_BUTTON_B -> {
+                        if (event.action == NativeKey.ACTION_UP) onBackPressedDispatcher.onBackPressed()
+                        true
+                    }
+                    else -> original.dispatchKeyEvent(event)
                 }
-                return true
+            }
+
+            override fun dispatchGenericMotionEvent(event: MotionEvent): Boolean {
+                if (event.action == MotionEvent.ACTION_MOVE && event.isFromSource(InputDevice.SOURCE_JOYSTICK)) {
+                    val x = event.getAxisValue(MotionEvent.AXIS_X)
+                    val y = event.getAxisValue(MotionEvent.AXIS_Y)
+                    val code = when {
+                        kotlin.math.abs(x) > kotlin.math.abs(y) && x > .55f -> NativeKey.KEYCODE_DPAD_RIGHT
+                        kotlin.math.abs(x) > kotlin.math.abs(y) && x < -.55f -> NativeKey.KEYCODE_DPAD_LEFT
+                        y > .55f -> NativeKey.KEYCODE_DPAD_DOWN
+                        y < -.55f -> NativeKey.KEYCODE_DPAD_UP
+                        else -> 0
+                    }
+                    if (code != 0) {
+                        if (event.eventTime - lastStick >= 180) {
+                            lastStick = event.eventTime
+                            original.dispatchKeyEvent(NativeKey(NativeKey.ACTION_DOWN, code))
+                            original.dispatchKeyEvent(NativeKey(NativeKey.ACTION_UP, code))
+                        }
+                        return true
+                    }
+                }
+                return original.dispatchGenericMotionEvent(event)
             }
         }
-        return super.dispatchGenericMotionEvent(event)
     }
 
     companion object { const val OPEN_LIBRARY = "br.com.amaral.portario.OPEN_LIBRARY" }
