@@ -1,4 +1,5 @@
 name: Publish Portario beta 3
+# Triggered after workflow registration
 on:
   push:
     branches:
