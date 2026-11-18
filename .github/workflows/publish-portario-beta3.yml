@@ -1,0 +1,132 @@
+name: Publish Portario beta 3
+on:
+  push:
+    branches:
+      - publish-portario-v0.1.0-beta.3
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reject an existing release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v0.1.0-beta.3 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "v0.1.0-beta.3 already exists" >&2
+            exit 1
+          fi
+
+      - name: Download the validated APK artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --fail --location \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/14421649991/zip" \
+            --output artifact.zip
+          mkdir artifact
+          unzip artifact.zip -d artifact
+          test -f artifact/Portario-debug.apk
+          test -f artifact/Portario-debug.apk.sha256
+
+      - name: Verify package, catalog and SHA-256
+        run: |
+          expected=1d96dda7e89459e1c308ded5d560ec7c5200e6e9e11e0a19e9e7093d66811b48
+          actual=$(sha256sum artifact/Portario-debug.apk | cut -d' ' -f1)
+          test "$actual" = "$expected"
+          grep -q "^$expected  Portario-debug.apk$" artifact/Portario-debug.apk.sha256
+          build_tools=$(find "$ANDROID_SDK_ROOT/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)
+          "$build_tools/aapt" dump badging artifact/Portario-debug.apk | tee badging.txt
+          grep -q "package: name='br.com.amaral.portario' versionCode='3' versionName='0.1.0-beta.3'" badging.txt
+          unzip -p artifact/Portario-debug.apk assets/catalog.json > catalog.json
+          test "$(jq '.schema' catalog.json)" = 1
+          test "$(jq '.games | length' catalog.json)" = 101
+          test "$(jq '[.games[].variants[]] | length' catalog.json)" = 113
+          test "$(jq '[.games[].id] | unique | length' catalog.json)" = 101
+          test "$(jq '[.games[].variants[].id] | unique | length' catalog.json)" = 113
+
+      - name: Compare signing certificate with beta 2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir previous
+          gh release download v0.1.0-beta.2 --repo "$GITHUB_REPOSITORY" --pattern '*.apk' --dir previous
+          previous_apk=$(find previous -maxdepth 1 -type f -name '*.apk' | head -1)
+          test -n "$previous_apk"
+          apksigner=$(find "$ANDROID_SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -1)
+          "$apksigner" verify --print-certs artifact/Portario-debug.apk | tee beta3-certificate.txt
+          "$apksigner" verify --print-certs "$previous_apk" | tee beta2-certificate.txt
+          beta3_cert=$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' beta3-certificate.txt | head -1)
+          beta2_cert=$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' beta2-certificate.txt | head -1)
+          test -n "$beta3_cert"
+          test -n "$beta2_cert"
+          {
+            echo "BETA3_CERT=$beta3_cert"
+            echo "BETA2_CERT=$beta2_cert"
+            if [ "$beta3_cert" = "$beta2_cert" ]; then
+              echo "SIGNATURE_NOTE=O certificado coincide com a beta 2; a atualização por cima é permitida pela assinatura."
+            else
+              echo "SIGNATURE_NOTE=O certificado debug difere da beta 2. O Android não instalará este APK por cima dela; será necessário desinstalar a beta anterior, o que apaga a biblioteca local."
+            fi
+          } >> "$GITHUB_ENV"
+
+      - name: Publish pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mv artifact/Portario-debug.apk Portario-0.1.0-beta.3-debug.apk
+          sha256sum Portario-0.1.0-beta.3-debug.apk > Portario-0.1.0-beta.3-debug.apk.sha256
+          cat > release-notes.md <<EOF
+          Atualização de curadoria do catálogo embarcado do Portário.
+
+          Incluído:
+          - Ninja Gaiden II — IzunaRecomp
+          - Pokémon Snap — Snap64Recomp
+          - Fable II — FableDroid
+          - Nimbus Recompilation Project — launcher com 14 ports nativos
+          - Super Mario Land 2: 6 Golden Coins — SuperMarioLand2Recomp
+          - Zelda: The Wind Waker HD — upstream oficial ZeldaWWHDRecomp como nova variante
+
+          Catálogo: 101 jogos e 113 variantes.
+
+          Validação:
+          - testes unitários e build debug
+          - 4 testes instrumentados no emulador
+          - smoke test com catálogo offline, GitHub, download, instalação e abertura
+          - Android lint
+          - pacote br.com.amaral.portario, versionCode 3, versionName 0.1.0-beta.3
+
+          APK SHA-256:
+          `1d96dda7e89459e1c308ded5d560ec7c5200e6e9e11e0a19e9e7093d66811b48`
+
+          Assinatura:
+          $SIGNATURE_NOTE
+          - beta 3: `$BETA3_CERT`
+          - beta 2: `$BETA2_CERT`
+
+          Build debug de teste, não uma build de distribuição.
+          EOF
+          gh release create v0.1.0-beta.3 \
+            Portario-0.1.0-beta.3-debug.apk \
+            Portario-0.1.0-beta.3-debug.apk.sha256 \
+            --repo "$GITHUB_REPOSITORY" \
+            --target ef03cc1586da2ad63794fcf92cb7c0ee3c0ac61a \
+            --title "Portário 0.1.0-beta.3" \
+            --notes-file release-notes.md \
+            --prerelease
+
+      - name: Verify publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "$(gh release view v0.1.0-beta.3 --repo "$GITHUB_REPOSITORY" --json isPrerelease --jq .isPrerelease)" = true
+          test "$(gh release view v0.1.0-beta.3 --repo "$GITHUB_REPOSITORY" --json isLatest --jq .isLatest)" = false
+          test "$(gh release view v0.1.0-beta.3 --repo "$GITHUB_REPOSITORY" --json targetCommitish --jq .targetCommitish)" = ef03cc1586da2ad63794fcf92cb7c0ee3c0ac61a
+          gh release view v0.1.0-beta.3 --repo "$GITHUB_REPOSITORY" --json url,tagName,isPrerelease,isLatest,targetCommitish,assets
