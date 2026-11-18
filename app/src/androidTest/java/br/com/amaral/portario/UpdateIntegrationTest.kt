@@ -160,6 +160,7 @@ class UpdateIntegrationTest {
 
             clock.addAndGet(TimeUnit.HOURS.toMillis(6))
             driver.setPeriodDelayMet(firstEnqueue.id)
+            driver.setAllConstraintsMet(firstEnqueue.id)
             awaitTag(cacheKey, "v2")
             assertEquals(2, calls.get())
             app.setChecksEnabled(false)
