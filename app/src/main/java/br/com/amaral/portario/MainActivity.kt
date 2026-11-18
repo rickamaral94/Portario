@@ -12,6 +12,7 @@ import android.view.MotionEvent
 import android.view.InputDevice
 import android.view.Window
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -44,6 +45,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -67,7 +70,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(0xFF151A24.toInt())
+        )
         installControllerInput()
         handleIncoming(intent)
         setContent {
@@ -305,7 +311,7 @@ private fun PortarioScreen(model: PortarioViewModel, askNotifications: () -> Uni
                     val current = trackById[variant.id]
                     DetailPage(detail, variant, current, caches[ReleaseRepository.cacheKey(variant.withTrack(current))],
                         transferById[variant.id], progress[variant.id], model, install, openPackage,
-                        Modifier.weight(if (wide) 0.48f else 1f))
+                        Modifier.weight(if (wide) 0.48f else 1f), compact = wide)
                 }
             }
         }
@@ -354,6 +360,8 @@ private fun NavGlyph(route: Destination, color: Color) {
 private fun Explore(games: List<Game>, search: String, edit: (String) -> Unit, filters: Int, filter: () -> Unit,
                     list: LazyListState, restore: String?, open: (Game, Variant) -> Unit) {
     val focus = remember { FocusRequester() }
+    val keyboard = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
     LaunchedEffect(restore) {
         if (restore != null && games.any { it.id == restore }) {
             val index = games.indexOfFirst { it.id == restore }
@@ -381,6 +389,8 @@ private fun Explore(games: List<Game>, search: String, edit: (String) -> Unit, f
             GameRow(game, game.variants.first(),
                 if (game.id == restore) Modifier.focusRequester(focus) else Modifier,
                 if (game.variants.size > 1) stringResource(R.string.variant_count, game.variants.size) else null) {
+                keyboard?.hide()
+                focusManager.clearFocus()
                 open(game, game.variants.first())
             }
         }

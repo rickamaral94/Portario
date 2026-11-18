@@ -256,7 +256,7 @@ private fun PreviewCard(preview: SourcePreview, model: PortarioViewModel) {
 @Composable
 fun DetailPage(game: Game, variant: Variant, track: Track?, cache: ReleaseCache?, transfer: Transfer?,
                progress: DownloadProgress?, model: PortarioViewModel, install: (Transfer) -> Unit,
-               openPackage: (String) -> Unit, modifier: Modifier = Modifier) {
+               openPackage: (String) -> Unit, modifier: Modifier = Modifier, compact: Boolean = false) {
     val context = LocalContext.current
     val epoch = model.packageEpoch
     val packageId = track?.packageId?.ifBlank { variant.packageId } ?: variant.packageId
@@ -280,7 +280,7 @@ fun DetailPage(game: Game, variant: Variant, track: Track?, cache: ReleaseCache?
 
     Column(modifier.fillMaxHeight().verticalScroll(scroll).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Action(stringResource(R.string.back), click = model::closeDetail)
-        Cover(game.genre, Modifier.fillMaxWidth().height(96.dp).clip(RoundedCornerShape(15.dp)))
+        Cover(game.genre, Modifier.fillMaxWidth().height(if (compact) 58.dp else 96.dp).clip(RoundedCornerShape(15.dp)))
         Text(game.title, style = MaterialTheme.typography.headlineMedium)
         Note(listOf(game.platform, game.genre).filter(String::isNotBlank).joinToString(" · "), Mint)
         if (game.variants.size > 1) {

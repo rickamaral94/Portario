@@ -21,9 +21,11 @@ from xml.etree import ElementTree
 tree, label, mode = sys.argv[1:]
 root = ElementTree.parse(tree).getroot()
 for node in root.iter("node"):
-    if label.casefold() not in (node.get("text", "") + " " + node.get("content-desc", "")).casefold():
+    fields = [node.get("text", "").casefold(), node.get("content-desc", "").casefold()]
+    matches = label.casefold() in fields if mode == "exact" else any(label.casefold() in field for field in fields)
+    if not matches:
         continue
-    if mode == "tap":
+    if mode in ("tap", "exact"):
         x, y, x2, y2 = map(int, re.findall(r"\d+", node.get("bounds", "")))
         print((x + x2)//2, (y + y2)//2)
     break
@@ -44,6 +46,30 @@ tap() {
   local point
   point=$(visible "$1" tap)
   adb shell input tap $point
+}
+tap_exact() {
+  local point
+  for attempt in $(seq 1 12); do
+    if uia && point=$(visible "$1" exact); then
+      adb shell input tap $point
+      return
+    fi
+    sleep 1
+  done
+  printf 'Did not find exact control %s\n' "$1" >&2
+  return 1
+}
+tap_in_detail() {
+  local point
+  for attempt in $(seq 1 6); do
+    if uia && point=$(visible "$1" exact); then
+      adb shell input tap $point
+      return
+    fi
+    adb shell input swipe 360 1210 360 680 360
+  done
+  printf 'Did not find detail control %s\n' "$1" >&2
+  return 1
 }
 capture() {
   adb exec-out screencap -p > "$out/$1.png"
@@ -97,7 +123,7 @@ adb shell input keyevent 4
 tap 'Tears of the Kingdom'
 adb shell wm user-rotation lock 1
 wait_for 'Tears of the Kingdom'
-adb shell input keyevent KEYCODE_TAB KEYCODE_DPAD_DOWN KEYCODE_DPAD_UP
+adb shell input keyevent KEYCODE_DPAD_DOWN KEYCODE_DPAD_DOWN
 sleep 1
 capture 04-paisagem
 adb shell wm user-rotation lock 0
@@ -119,6 +145,56 @@ if [[ ${PORTARIO_NETWORK_SMOKE:-0} == 1 ]]; then
   wait_for '2 acompanhados'
   tap 'Buscar atualizações'
   wait_for 'Verificação da biblioteca concluída'
+
+  tap 'DevilutionX'
+  tap_in_detail 'Baixar APK'
+  tap_exact 'Baixar'
+  wait_for 'devilutionx-android.apk'
+  if point=$(visible 'Cancelar' exact); then
+    adb shell input tap $point
+    echo 'Download cancellation exercised while active'
+  else
+    tap_in_detail 'Remover download'
+    echo 'Download finished before cancellation and was removed from the library'
+  fi
+  tap_in_detail 'Baixar APK'
+  tap_exact 'Baixar'
+  wait_for 'Instalar'
+
+  # Install a disposable fixture bearing the same package ID and a different signer.
+  fixture=$(mktemp -d)
+  cat > "$fixture/AndroidManifest.xml" <<'XML'
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.diasurgical.devilutionx" android:versionCode="1">
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35" />
+    <application android:hasCode="false" android:label="Signature test fixture">
+        <activity android:name="android.app.Activity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+XML
+  build_tools=$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)
+  "$build_tools/aapt2" link -I "$ANDROID_HOME/platforms/android-36/android.jar" \
+    --manifest "$fixture/AndroidManifest.xml" -o "$fixture/unsigned.apk"
+  "$build_tools/apksigner" sign --ks "$HOME/.android/debug.keystore" --ks-pass pass:android \
+    --out "$fixture/signed.apk" "$fixture/unsigned.apk"
+  adb install "$fixture/signed.apk"
+  adb shell appops set "$package" REQUEST_INSTALL_PACKAGES allow
+  tap_in_detail 'Instalar'
+  wait_for 'A assinatura difere'
+  adb shell dumpsys package org.diasurgical.devilutionx | grep 'versionCode=1 '
+  adb uninstall org.diasurgical.devilutionx
+  rm -rf "$fixture"
+
+  tap_in_detail 'Instalar'
+  tap_exact 'Install'
+  wait_for 'Instalado'
+  tap_in_detail 'Abrir'
+  adb shell dumpsys activity activities | grep -E 'topResumedActivity.*org.diasurgical.devilutionx'
 fi
 
 adb shell wm size reset
