@@ -22,7 +22,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 sha256sum app/build/outputs/apk/debug/app-debug.apk
 ```
 
-O GitHub Actions gera o artefato **Portario-debug**. A v0.1.0 usa assinatura de debug. Para distribuição oficial, configure uma chave de release sob controle do mantenedor antes de distribuir a primeira versão de produção.
+O GitHub Actions gera o artefato **Portario-debug**. As betas usam a chave de debug do ambiente de build. O Android pode recusar a atualização entre builds de ambientes diferentes. Remover o Portário apaga a biblioteca local. Para distribuição oficial, configure uma chave de release sob controle do mantenedor.
 
 Com um emulador conectado, `./gradlew connectedDebugAndroidTest` simula dois ciclos do WorkManager e respostas HTTP do GitHub sem consumir a cota real. A suíte verifica o cache e o ETag, a retomada após o limite e a separação entre acesso negado e limite de consultas.
 
@@ -36,7 +36,7 @@ O arquivo [catalog.json](app/src/main/assets/catalog.json) contém o catálogo d
 - Anote edição, dados necessários, requisitos, controle, URL do guia, evidências, data de conferência e upstream conforme a documentação da fonte. Use `packageId` apenas quando confirmado no APK ou no manifesto. `verifiedTag` e `verifiedAssets` representam a conferência editorial, enquanto o app consulta as releases atuais.
 - Dê preferência a projetos que publiquem APK instalável no repositório do mantenedor. Inclua os passos extras com destaque. No GTA V Recompiled, use o guia para gerar o pacote do usuário a partir dos próprios discos antes de jogar.
 
-A planilha do usuário foi usada para descobrir candidatos. A seleção inicial reúne as fontes com APK Android oficial identificado nas releases consultadas. Isso confirma a publicação do artefato, e a compatibilidade com hardware depende do port e da versão.
+A [revisão da planilha](docs/catalogo-revisao-103.md) registra as fontes e o resultado das 103 entradas. As fichas indicam quando há APK publicado, quando o APK exige preparo adicional e quando o próprio usuário precisa seguir um guia para obter ou gerar o instalador. A publicação do artefato confirma sua disponibilidade na fonte. A compatibilidade com hardware depende do port e da versão.
 
 ## Teste rápido no Odin 2 Portal Pro
 
