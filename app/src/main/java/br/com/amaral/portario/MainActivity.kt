@@ -154,8 +154,8 @@ class MainActivity : ComponentActivity() {
             if (code != 0) {
                 if (event.eventTime - lastStick >= 180) {
                     lastStick = event.eventTime
-                    super.dispatchKeyEvent(NativeKey(NativeKey.ACTION_DOWN, code))
-                    super.dispatchKeyEvent(NativeKey(NativeKey.ACTION_UP, code))
+                    dispatchKeyEvent(NativeKey(NativeKey.ACTION_DOWN, code))
+                    dispatchKeyEvent(NativeKey(NativeKey.ACTION_UP, code))
                 }
                 return true
             }

@@ -74,7 +74,7 @@ adb install -r "$apk"
 adb shell pm clear "$package" >/dev/null
 adb shell cmd locale set-app-locales "$package" --user 0 --locales pt-BR >/dev/null
 adb shell svc wifi disable
-adb shell svc data disable
+adb shell svc data disable >/dev/null 2>&1 || true
 launch
 wait_for 'Breath of the Wild'
 capture 01-explorar
@@ -102,7 +102,7 @@ sleep 1
 capture 04-paisagem
 adb shell wm user-rotation lock 0
 adb shell svc wifi enable
-adb shell svc data enable
+adb shell svc data enable >/dev/null 2>&1 || true
 
 if [[ ${PORTARIO_NETWORK_SMOKE:-0} == 1 ]]; then
   share https://github.com/octocat/Hello-World/releases
