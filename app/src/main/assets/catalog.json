@@ -1,0 +1,1813 @@
+{
+  "schema": 1,
+  "games": [
+    {
+      "id": "botw",
+      "title": "Zelda: Breath of the Wild",
+      "aliases": [
+        "botw",
+        "zelda botw"
+      ],
+      "genre": "Aventura",
+      "platform": "Switch",
+      "variants": [
+        {
+          "id": "mamcjr/botwrecompandroid",
+          "repo": "mamcjr/BOTWRecompAndroid",
+          "name": "BOTWRecompAndroid",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/mamcjr/BOTWRecompAndroid#readme",
+          "requirements": "ARM64; Vulkan; requisitos de memória e GPU variam por versão.",
+          "gameFiles": "Dump da versão Switch. Consulte no guia as versões aceitas e os arquivos exigidos.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/mamcjr/BOTWRecompAndroid#readme",
+            "https://github.com/mamcjr/BOTWRecompAndroid/releases/tag/v0.4.6-beta"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.4.6-beta",
+          "verifiedAssets": [
+            "BOTWRecompAndroid-0.4.6-beta.apk"
+          ],
+          "packageId": "com.botwrecomp.android",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 45
+        },
+        {
+          "id": "rickamaral94/botwnspxci",
+          "repo": "rickamaral94/Botwnspxci",
+          "name": "BOTW Amaral",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/rickamaral94/Botwnspxci#readme",
+          "requirements": "",
+          "gameFiles": "Importação NSP/XCI documentada no fork.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/rickamaral94/Botwnspxci#readme",
+            "https://github.com/rickamaral94/Botwnspxci/releases/tag/v0.3.4-beta-amaral.1"
+          ],
+          "checked": "2026-11-17",
+          "note": "Importação NSP/XCI documentada no fork.",
+          "upstream": "mamcjr/BOTWRecompAndroid",
+          "filter": "",
+          "verifiedTag": "v0.3.4-beta-amaral.1",
+          "verifiedAssets": [
+            "BOTW-0.3.4-beta-amaral.1-arm64.apk"
+          ],
+          "packageId": "com.botwrecomp.android",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 39
+        }
+      ]
+    },
+    {
+      "id": "totk",
+      "title": "Zelda: Tears of the Kingdom",
+      "aliases": [
+        "totk",
+        "zelda totk"
+      ],
+      "genre": "Aventura",
+      "platform": "Switch",
+      "variants": [
+        {
+          "id": "mamcjr/totkdroid",
+          "repo": "mamcjr/TOTKDroid",
+          "name": "TOTKDroid",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/mamcjr/TOTKDroid#readme",
+          "requirements": "ARM64; Vulkan. Consulte os requisitos da build para memória e recursos Vulkan.",
+          "gameFiles": "Dados próprios da versão Switch 1.4.3. Confira no guia como preparar as pastas.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/mamcjr/TOTKDroid#readme",
+            "https://github.com/mamcjr/TOTKDroid/releases/tag/v0.3.4-beta"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.3.4-beta",
+          "verifiedAssets": [
+            "TOTKDroid-0.3.4-beta.apk"
+          ],
+          "packageId": "com.totkrecompandroid",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 10
+        },
+        {
+          "id": "rickamaral94/totknspcxi",
+          "repo": "rickamaral94/Totknspcxi",
+          "name": "TOTK Amaral",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/rickamaral94/Totknspcxi#readme",
+          "requirements": "",
+          "gameFiles": "Importação NSP/XCI; confirme jogo base e atualização exigidos na release Amaral.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/rickamaral94/Totknspcxi#readme",
+            "https://github.com/rickamaral94/Totknspcxi/releases/tag/v0.2.2-beta-amaral.24"
+          ],
+          "checked": "2026-11-17",
+          "note": "Importação NSP/XCI; confirme jogo base e atualização exigidos na release Amaral.",
+          "upstream": "mamcjr/TOTKDroid",
+          "filter": "",
+          "verifiedTag": "v0.2.2-beta-amaral.24",
+          "verifiedAssets": [
+            "Totknspcxi-0.2.2-beta-amaral.24-v142.apk"
+          ],
+          "packageId": "com.totkrecompandroid",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 27
+        }
+      ]
+    },
+    {
+      "id": "las",
+      "title": "Zelda: Link’s Awakening",
+      "aliases": [
+        "las",
+        "links awakening"
+      ],
+      "genre": "Aventura",
+      "platform": "Switch",
+      "variants": [
+        {
+          "id": "mamcjr/lasrecompandroid",
+          "repo": "mamcjr/LASRecompAndroid",
+          "name": "LASRecompAndroid",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/mamcjr/LASRecompAndroid#readme",
+          "requirements": "ARM64 e Vulkan.",
+          "gameFiles": "Dump da versão Switch de 2019. O guia informa versões e arquivos necessários.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/mamcjr/LASRecompAndroid#readme",
+            "https://github.com/mamcjr/LASRecompAndroid/releases/tag/v0.5.11"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "peiikai/LASRecomp",
+          "filter": "",
+          "verifiedTag": "v0.5.11",
+          "verifiedAssets": [
+            "LASRecomp-Android-0.5.11.apk"
+          ]
+        },
+        {
+          "id": "peiikai/lasrecomp",
+          "repo": "peiikai/LASRecomp",
+          "name": "LAS Recomp · peiikai",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/peiikai/LASRecomp#readme",
+          "requirements": "",
+          "gameFiles": "Dump da versão Switch de 2019. O guia informa versões e arquivos necessários.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/peiikai/LASRecomp#readme",
+            "https://github.com/peiikai/LASRecomp/releases/tag/nightly"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "nightly",
+          "verifiedAssets": [
+            "LAS.Recomp-nightly-202611171135-c2e7e27-android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sonic-unleashed",
+      "title": "Sonic Unleashed",
+      "aliases": [
+        "unleashed",
+        "sonic unleashed recomp"
+      ],
+      "genre": "Plataforma",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "sansnope/unleashedrecomp-android",
+          "repo": "SansNope/UnleashedRecomp-Android",
+          "name": "Unleashed Recompiled",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/SansNope/UnleashedRecomp-Android#readme",
+          "requirements": "Android ARM64 e dispositivo com Vulkan.",
+          "gameFiles": "Dados de uma cópia Xbox 360 e atualização compatível conforme as instruções.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/SansNope/UnleashedRecomp-Android#readme",
+            "https://github.com/SansNope/UnleashedRecomp-Android/releases/tag/v0.6.1",
+            "https://github.com/SansNope/UnleashedRecomp-Android/releases/tag/UnleashedRecompTestBuild_0.3.0",
+            "https://github.com/SansNope/UnleashedRecomp-Android/releases/tag/v0.5.2"
+          ],
+          "checked": "2026-11-17",
+          "note": "O v0.6.1 restaurou o perfil de áudio AYN. O v0.5.2 documentava congelamentos em portáteis AYN; o próprio v0.6.1 não confirma testes no Odin 2 Portal Pro.",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.6.1",
+          "verifiedAssets": [
+            "UnleashedRecomp_0.6.1.apk"
+          ],
+          "packageId": "com.sega.sonicunr",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 22
+        }
+      ]
+    },
+    {
+      "id": "nfsu1",
+      "title": "Need for Speed: Underground",
+      "aliases": [
+        "nfsu1",
+        "nfs underground 1",
+        "need for speed underground 1"
+      ],
+      "genre": "Corrida",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "codepdbh/nfsu1-recompiled",
+          "repo": "codepdbh/nfsu1-recompiled",
+          "name": "Underground Android Evolved",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/codepdbh/nfsu1-recompiled#readme",
+          "requirements": "APKs ARM64 e ARMv7; confira Android e Vulkan no guia.",
+          "gameFiles": "Instalação do jogo de PC (patch 1.4, Speed.exe).",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/codepdbh/nfsu1-recompiled#readme",
+            "https://github.com/codepdbh/nfsu1-recompiled/releases/tag/v0.2.14"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.2.14",
+          "verifiedAssets": [
+            "NFSU1-AndroidEvolved-v0.2.14-arm64.apk",
+            "NFSU1-AndroidEvolved-v0.2.14-armeabi-v7a.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nfsu2",
+      "title": "Need for Speed: Underground 2",
+      "aliases": [
+        "nfsu2",
+        "underground 2",
+        "nfs underground 2"
+      ],
+      "genre": "Corrida",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "codepdbh/nfsu2-recompiled",
+          "repo": "codepdbh/nfsu2-recompiled",
+          "name": "Underground 2 Android Evolved",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/codepdbh/nfsu2-recompiled#readme",
+          "requirements": "APKs ARM64 e ARMv7; exige Vulkan.",
+          "gameFiles": "Arquivos de uma instalação do jogo de PC. Consulte no guia a versão do executável.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/codepdbh/nfsu2-recompiled#readme",
+            "https://github.com/codepdbh/nfsu2-recompiled/releases/tag/v0.14.16"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.14.16",
+          "verifiedAssets": [
+            "NFSU2-AndroidEvolved-v0.14.16-arm64.apk",
+            "NFSU2-AndroidEvolved-v0.14.16-armeabi-v7a.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nfsmw",
+      "title": "Need for Speed: Most Wanted (2005)",
+      "aliases": [
+        "nfsmw",
+        "most wanted 2005",
+        "nfs mw"
+      ],
+      "genre": "Corrida",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "codepdbh/nfsmwpc-recompiled",
+          "repo": "codepdbh/nfsmwpc-recompiled",
+          "name": "Most Wanted Android Evolved · PC",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/codepdbh/nfsmwpc-recompiled#readme",
+          "requirements": "Android 10 ou posterior, Vulkan 1.1 ou posterior e APK ARM64 ou ARMv7.",
+          "gameFiles": "Dados da edição PC de 2005 (speed.exe).",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/codepdbh/nfsmwpc-recompiled#readme",
+            "https://github.com/codepdbh/nfsmwpc-recompiled/releases/tag/v0.1.16"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.1.16",
+          "verifiedAssets": [
+            "NFSMWPC-AndroidEvolved-v0.1.16-arm64.apk",
+            "NFSMWPC-AndroidEvolved-v0.1.16-armeabi-v7a.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gta4",
+      "title": "Grand Theft Auto IV",
+      "aliases": [
+        "gta 4",
+        "gta4",
+        "gta iv",
+        "liberty recomp"
+      ],
+      "genre": "Ação",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "vaduur/libertyrecompandroid",
+          "repo": "vaduur/LibertyRecompAndroid",
+          "name": "Liberty Recompiled Android",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/vaduur/LibertyRecompAndroid#readme",
+          "requirements": "ARM64, Vulkan e espaço para o primeiro processamento dos arquivos.",
+          "gameFiles": "Cópia Xbox 360. O guia do port documenta a edição USA (NTSC-U) verificada.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/vaduur/LibertyRecompAndroid#readme",
+            "https://github.com/vaduur/LibertyRecompAndroid/releases/tag/v0.5.9.3"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.5.9.3",
+          "verifiedAssets": [
+            "LibertyRecompAndroid-v0.5.9.3.apk"
+          ],
+          "packageId": "com.libertyrecomp",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 18
+        }
+      ]
+    },
+    {
+      "id": "gta5",
+      "title": "Grand Theft Auto V",
+      "aliases": [
+        "gta 5",
+        "gta5",
+        "gta v"
+      ],
+      "genre": "Ação",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "andrewnakas/gtav-recomp",
+          "repo": "andrewnakas/gtav-recomp",
+          "name": "GTA V Recompiled",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "MANUAL",
+          "channel": "ALL",
+          "guide": "https://github.com/andrewnakas/gtav-recomp#readme",
+          "requirements": "ARM64 e Vulkan; o mantenedor recomenda Snapdragon recente e cerca de 40 GB livres no preparo.",
+          "gameFiles": "Dois discos Xbox 360, TU27 e pacote Android gerado no computador a partir da própria cópia.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/andrewnakas/gtav-recomp#readme",
+            "https://github.com/andrewnakas/gtav-recomp/releases/tag/v0.3.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "A release v0.3.0 gera o APK e o pacote Android no computador. Siga o guia da release atual.",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.3.0",
+          "verifiedAssets": []
+        }
+      ]
+    },
+    {
+      "id": "oot",
+      "title": "Zelda: Ocarina of Time",
+      "aliases": [
+        "oot",
+        "ocarina of time",
+        "ship of harkinian"
+      ],
+      "genre": "Aventura",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "linkzenic/shipwright-ports",
+          "repo": "linkzenic/Shipwright-Ports",
+          "name": "Ship of Harkinian · Android",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/linkzenic/Shipwright-Ports#readme",
+          "requirements": "",
+          "gameFiles": "ROM obtida da própria cópia, em uma versão aceita pelo guia de extração.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/linkzenic/Shipwright-Ports#readme",
+            "https://github.com/linkzenic/Shipwright-Ports/releases/tag/v9.3.1-ports.2"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "HarbourMasters/Shipwright",
+          "filter": "soh_release",
+          "verifiedTag": "v9.3.1-ports.2",
+          "verifiedAssets": [
+            "soh_release_v9.3.1-android.4.apk"
+          ]
+        },
+        {
+          "id": "waterdish/shipwright-android",
+          "repo": "Waterdish/Shipwright-Android",
+          "name": "Ship of Harkinian · Waterdish",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Waterdish/Shipwright-Android#readme",
+          "requirements": "",
+          "gameFiles": "ROM obtida da própria cópia, em uma versão aceita pelo guia de extração.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Waterdish/Shipwright-Android#readme",
+            "https://github.com/Waterdish/Shipwright-Android/releases/tag/v9.0.2P2"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "HarbourMasters/Shipwright",
+          "filter": "",
+          "verifiedTag": "v9.0.2P2",
+          "verifiedAssets": [
+            "soh.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mm",
+      "title": "Zelda: Majora’s Mask",
+      "aliases": [
+        "majora",
+        "majoras mask",
+        "2ship",
+        "zelda64recomp"
+      ],
+      "genre": "Aventura",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "linkzenic/2ship2harkinian-android",
+          "repo": "linkzenic/2ship2harkinian-Android",
+          "name": "2 Ship 2 Harkinian",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/linkzenic/2ship2harkinian-Android#readme",
+          "requirements": "",
+          "gameFiles": "ROM própria em versão documentada pelo mantenedor.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/linkzenic/2ship2harkinian-Android#readme",
+            "https://github.com/linkzenic/2ship2harkinian-Android/releases/tag/v5.0.1-android.3"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "HarbourMasters/2ship2harkinian",
+          "filter": "",
+          "verifiedTag": "v5.0.1-android.3",
+          "verifiedAssets": [
+            "2Ship-Android-v5.0.1-android.3.apk"
+          ]
+        },
+        {
+          "id": "linkzenic/zelda64recomp-android",
+          "repo": "linkzenic/Zelda64Recomp-Android",
+          "name": "Zelda64 Recompiled Android",
+          "kind": "RECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/linkzenic/Zelda64Recomp-Android#readme",
+          "requirements": "",
+          "gameFiles": "ROM própria em versão documentada pelo mantenedor.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/linkzenic/Zelda64Recomp-Android#readme",
+            "https://github.com/linkzenic/Zelda64Recomp-Android/releases/tag/0.6.10"
+          ],
+          "checked": "2026-11-17",
+          "note": "Recompilação alternativa de Majora’s Mask.",
+          "upstream": "Zelda64Recomp/Zelda64Recomp",
+          "filter": "",
+          "verifiedTag": "0.6.10",
+          "verifiedAssets": [
+            "Zelda64-Recompiled-Android-App-0.6.10.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diablo",
+      "title": "Diablo e Hellfire",
+      "aliases": [
+        "diablo 1",
+        "diablo hellfire",
+        "devilutionx"
+      ],
+      "genre": "RPG",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "diasurgical/devilutionx",
+          "repo": "diasurgical/DevilutionX",
+          "name": "DevilutionX",
+          "kind": "ENGINE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/diasurgical/DevilutionX#readme",
+          "requirements": "",
+          "gameFiles": "DIABDAT.MPQ para Diablo completo; Hellfire exige os MPQs da expansão.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/diasurgical/DevilutionX#readme",
+            "https://github.com/diasurgical/DevilutionX/releases/tag/1.5.5"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "android",
+          "verifiedTag": "1.5.5",
+          "verifiedAssets": [
+            "devilutionx-android.apk"
+          ],
+          "packageId": "org.diasurgical.devilutionx",
+          "abis": [
+            "arm64-v8a",
+            "armeabi-v7a",
+            "x86",
+            "x86_64"
+          ],
+          "apkVersionCode": 32
+        }
+      ]
+    },
+    {
+      "id": "morrowind",
+      "title": "The Elder Scrolls III: Morrowind",
+      "aliases": [
+        "morrowind",
+        "tes 3",
+        "openmw"
+      ],
+      "genre": "RPG",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "andiweli/openmw-android",
+          "repo": "Andiweli/OpenMW-Android",
+          "name": "OpenMW Android",
+          "kind": "ENGINE",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Andiweli/OpenMW-Android#readme",
+          "requirements": "",
+          "gameFiles": "Dados da instalação de Morrowind no PC; expansões e mods são opcionais.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/Andiweli/OpenMW-Android#readme",
+            "https://github.com/Andiweli/OpenMW-Android/releases/tag/0.51.0-14"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "0.51.0-14",
+          "verifiedAssets": [
+            "OpenMW.0.51-14.apk"
+          ],
+          "packageId": "com.ast.openmw",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 5114
+        },
+        {
+          "id": "xyzz/openmw-android",
+          "repo": "xyzz/openmw-android",
+          "name": "OpenMicroWave · xyzz",
+          "kind": "ENGINE",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/xyzz/openmw-android#readme",
+          "requirements": "",
+          "gameFiles": "Dados da instalação de Morrowind no PC; expansões e mods são opcionais.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/xyzz/openmw-android#readme",
+            "https://github.com/xyzz/openmw-android/releases/tag/0.48.0-46-nightly"
+          ],
+          "checked": "2026-11-17",
+          "note": "Canal nightly.",
+          "upstream": "OpenMW/openmw",
+          "filter": "",
+          "verifiedTag": "0.48.0-46-nightly",
+          "verifiedAssets": [
+            "omw_release_0.48.0-46.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zelda-twilight-princess-dusklight",
+      "title": "Zelda: Twilight Princess (Dusklight)",
+      "aliases": [
+        "dusklight"
+      ],
+      "genre": "Aventura",
+      "platform": "GameCube",
+      "variants": [
+        {
+          "id": "twilitrealm/dusklight",
+          "repo": "TwilitRealm/dusklight",
+          "name": "dusklight",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/TwilitRealm/dusklight#readme",
+          "requirements": "",
+          "gameFiles": "ISO (hash verificado)",
+          "controller": "",
+          "evidence": [
+            "https://github.com/TwilitRealm/dusklight#readme",
+            "https://github.com/TwilitRealm/dusklight/releases/tag/v2.0.3"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v2.0.3",
+          "verifiedAssets": [
+            "Dusklight-v2.0.3-android-arm64.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "super-mario-64-ghostship",
+      "title": "Super Mario 64 (Ghostship)",
+      "aliases": [
+        "Ghostship"
+      ],
+      "genre": "Plataforma",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "izzy2lost/ghostship",
+          "repo": "izzy2lost/Ghostship",
+          "name": "Ghostship",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/izzy2lost/Ghostship#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/izzy2lost/Ghostship#readme",
+            "https://github.com/izzy2lost/Ghostship/releases/tag/1.0.1"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "1.0.1",
+          "verifiedAssets": [
+            "app-release.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "star-fox-64-starship",
+      "title": "Star Fox 64 (Starship)",
+      "aliases": [
+        "Starship"
+      ],
+      "genre": "Ação",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "izzy2lost/starship",
+          "repo": "izzy2lost/Starship",
+          "name": "Starship",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/izzy2lost/Starship#readme",
+          "requirements": "",
+          "gameFiles": "ROM US .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/izzy2lost/Starship#readme",
+            "https://github.com/izzy2lost/Starship/releases/tag/v2.0.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v2.0.0",
+          "verifiedAssets": [
+            "starship-v2.0.0.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sonic-1-2-remaster-2013",
+      "title": "Sonic 1 & 2 (remaster 2013)",
+      "aliases": [
+        "Sonic-1-2-2013-Decompilation"
+      ],
+      "genre": "Plataforma",
+      "platform": "Mega Drive / mobile",
+      "variants": [
+        {
+          "id": "rubberduckycooly/sonic-1-2-2013-decompilation",
+          "repo": "Rubberduckycooly/Sonic-1-2-2013-Decompilation",
+          "name": "Sonic-1-2-2013-Decompilation",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation#readme",
+          "requirements": "",
+          "gameFiles": "Data.rsdk da versão mobile",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation#readme",
+            "https://github.com/RSDKModding/RSDKv4-Decompilation/releases/tag/1.3.2"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "1.3.2",
+          "verifiedAssets": [
+            "RSDKv4.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zelda-a-link-to-the-past-zelda3",
+      "title": "Zelda: A Link to the Past (zelda3)",
+      "aliases": [
+        "zelda3-android"
+      ],
+      "genre": "Aventura",
+      "platform": "SNES",
+      "variants": [
+        {
+          "id": "samyost1/zelda3-android",
+          "repo": "samyost1/zelda3-android",
+          "name": "zelda3-android",
+          "kind": "ENGINE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/samyost1/zelda3-android#readme",
+          "requirements": "",
+          "gameFiles": "ROM + zelda3.ini",
+          "controller": "",
+          "evidence": [
+            "https://github.com/samyost1/zelda3-android#readme",
+            "https://github.com/samyost1/zelda3-android/releases/tag/v2.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v2.0",
+          "verifiedAssets": [
+            "zelda3-dualscreen.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pokemon-red-blue-yellow-gen1recomp",
+      "title": "Pokémon Red/Blue/Yellow (Gen1Recomp)",
+      "aliases": [
+        "gen1recomp"
+      ],
+      "genre": "RPG",
+      "platform": "Game Boy",
+      "variants": [
+        {
+          "id": "bryanthaboi/gen1recomp",
+          "repo": "bryanthaboi/gen1recomp",
+          "name": "gen1recomp",
+          "kind": "ENGINE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/bryanthaboi/gen1recomp#readme",
+          "requirements": "",
+          "gameFiles": "ROM própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/bryanthaboi/gen1recomp#readme",
+            "https://github.com/bryanthaboi/gen1recomp/releases/tag/v0.4.8"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.4.8",
+          "verifiedAssets": [
+            "gen1recomp-0.4.8-android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mario-kart-64-spaghettikart",
+      "title": "Mario Kart 64 (SpaghettiKart)",
+      "aliases": [
+        "SpaghettiKart"
+      ],
+      "genre": "Corrida",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "izzy2lost/spaghettikart",
+          "repo": "izzy2lost/SpaghettiKart",
+          "name": "SpaghettiKart",
+          "kind": "DECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/izzy2lost/SpaghettiKart#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64 (via Torch)",
+          "controller": "",
+          "evidence": [
+            "https://github.com/izzy2lost/SpaghettiKart#readme",
+            "https://github.com/izzy2lost/SpaghettiKart/releases/tag/2.0.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "2.0.0",
+          "verifiedAssets": [
+            "app-release.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "banjo-kazooie-banjo-recompiled",
+      "title": "Banjo-Kazooie (Banjo: Recompiled)",
+      "aliases": [
+        "BanjoRecomp-Android"
+      ],
+      "genre": "Plataforma",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "aureliob/banjorecomp-android",
+          "repo": "AurelioB/BanjoRecomp-Android",
+          "name": "BanjoRecomp-Android",
+          "kind": "RECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/AurelioB/BanjoRecomp-Android#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/AurelioB/BanjoRecomp-Android#readme",
+            "https://github.com/AurelioB/BanjoRecomp-Android/releases/tag/android-v0.1.2"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "android-v0.1.2",
+          "verifiedAssets": [
+            "BanjoRecompiled-v0.1.2-Android-ARM64.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "perfect-dark",
+      "title": "Perfect Dark",
+      "aliases": [
+        "perfect_dark"
+      ],
+      "genre": "Ação",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "izzy2lost/perfect_dark",
+          "repo": "izzy2lost/perfect_dark",
+          "name": "perfect_dark",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/izzy2lost/perfect_dark#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/izzy2lost/perfect_dark#readme",
+            "https://github.com/izzy2lost/perfect_dark/releases/tag/2.0.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "2.0.0",
+          "verifiedAssets": [
+            "app-release.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "super-metroid",
+      "title": "Super Metroid",
+      "aliases": [
+        "super_metroid-android"
+      ],
+      "genre": "Aventura",
+      "platform": "SNES",
+      "variants": [
+        {
+          "id": "raekwon1603/super_metroid-android",
+          "repo": "Raekwon1603/super_metroid-android",
+          "name": "super_metroid-android",
+          "kind": "ENGINE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Raekwon1603/super_metroid-android#readme",
+          "requirements": "",
+          "gameFiles": "ROM própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Raekwon1603/super_metroid-android#readme",
+            "https://github.com/Raekwon1603/super_metroid-android/releases/tag/v1.1"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v1.1",
+          "verifiedAssets": [
+            "Super.Metroid.Dual.Screen.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "half-life-xash3d-fwgs",
+      "title": "Half-Life (Xash3D FWGS)",
+      "aliases": [
+        "xash3d-fwgs"
+      ],
+      "genre": "Ação",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "fwgs/xash3d-fwgs",
+          "repo": "FWGS/xash3d-fwgs",
+          "name": "xash3d-fwgs",
+          "kind": "ENGINE",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/FWGS/xash3d-fwgs#readme",
+          "requirements": "",
+          "gameFiles": "Pasta valve do Steam",
+          "controller": "",
+          "evidence": [
+            "https://github.com/FWGS/xash3d-fwgs#readme",
+            "https://github.com/FWGS/xash3d-fwgs/releases/tag/continuous"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "continuous",
+          "verifiedAssets": [
+            "xash3d-fwgs-android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-simpsons-hit-run",
+      "title": "The Simpsons: Hit & Run",
+      "aliases": [
+        "The-Simpsons-Hit-and-Run-Android"
+      ],
+      "genre": "Ação",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "carlox33/the-simpsons-hit-and-run-android",
+          "repo": "Carlox33/The-Simpsons-Hit-and-Run-Android",
+          "name": "The-Simpsons-Hit-and-Run-Android",
+          "kind": "SOURCE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android#readme",
+          "requirements": "",
+          "gameFiles": "Arquivos do PC",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android#readme",
+            "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android/releases/tag/v0.93"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.93",
+          "verifiedAssets": [
+            "SimpsonsNTSC.apk",
+            "SimpsonsPAL.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "super-smash-bros-battleship",
+      "title": "Super Smash Bros. (BattleShip)",
+      "aliases": [
+        "BattleShip"
+      ],
+      "genre": "Luta",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "jrickey/battleship",
+          "repo": "JRickey/BattleShip",
+          "name": "BattleShip",
+          "kind": "DECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/JRickey/BattleShip#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/JRickey/BattleShip#readme",
+            "https://github.com/JRickey/BattleShip/releases/tag/v1.6"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v1.6",
+          "verifiedAssets": [
+            "BattleShip-android-armeabi-v7a.apk",
+            "BattleShip-android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crash-team-racing",
+      "title": "Crash Team Racing",
+      "aliases": [
+        "ctr-native-android"
+      ],
+      "genre": "Corrida",
+      "platform": "PS1",
+      "variants": [
+        {
+          "id": "simon358/ctr-native-android",
+          "repo": "Simon358/ctr-native-android",
+          "name": "ctr-native-android",
+          "kind": "DECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Simon358/ctr-native-android#readme",
+          "requirements": "",
+          "gameFiles": "ISO própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Simon358/ctr-native-android#readme",
+            "https://github.com/Simon358/ctr-native-android/releases/tag/Android-Build4"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "Android-Build4",
+          "verifiedAssets": [
+            "CTR-native-android.26.07.2026.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "castlevania-symphony-of-the-night",
+      "title": "Castlevania: Symphony of the Night",
+      "aliases": [
+        "SymphonyRecomp"
+      ],
+      "genre": "Ação",
+      "platform": "PS1",
+      "variants": [
+        {
+          "id": "sergiomanzur/symphonyrecomp",
+          "repo": "sergiomanzur/SymphonyRecomp",
+          "name": "SymphonyRecomp",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/sergiomanzur/SymphonyRecomp#readme",
+          "requirements": "",
+          "gameFiles": "BIN/CUE",
+          "controller": "",
+          "evidence": [
+            "https://github.com/sergiomanzur/SymphonyRecomp#readme",
+            "https://github.com/sergiomanzur/SymphonyRecomp/releases/tag/android-v0.11b"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "android-v0.11b",
+          "verifiedAssets": [
+            "SymphonyRecomp-Android-Beta-0.11.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zelda-the-minish-cap",
+      "title": "Zelda: The Minish Cap",
+      "aliases": [
+        "tmc-android"
+      ],
+      "genre": "Aventura",
+      "platform": "GBA",
+      "variants": [
+        {
+          "id": "samyost1/tmc-android",
+          "repo": "samyost1/tmc-android",
+          "name": "tmc-android",
+          "kind": "DECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/samyost1/tmc-android#readme",
+          "requirements": "",
+          "gameFiles": "ROM própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/samyost1/tmc-android#readme",
+            "https://github.com/samyost1/tmc-android/releases/tag/v1.2"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v1.2",
+          "verifiedAssets": [
+            "tmc-dual-screen-v1.2.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sonic-cd",
+      "title": "Sonic CD",
+      "aliases": [
+        "Sonic-CD-11-Decompilation"
+      ],
+      "genre": "Plataforma",
+      "platform": "Sega CD",
+      "variants": [
+        {
+          "id": "rubberduckycooly/sonic-cd-11-decompilation",
+          "repo": "Rubberduckycooly/Sonic-CD-11-Decompilation",
+          "name": "Sonic-CD-11-Decompilation",
+          "kind": "DECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation#readme",
+          "requirements": "",
+          "gameFiles": "Data.rsdk",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation#readme",
+            "https://github.com/RSDKModding/RSDKv3-Decompilation/releases/tag/1.3.2"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "1.3.2",
+          "verifiedAssets": [
+            "RSDKv3.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mystical-ninja-starring-goemon",
+      "title": "Mystical Ninja Starring Goemon",
+      "aliases": [
+        "Goemon64Recomp-Android"
+      ],
+      "genre": "Aventura",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "ogdanimal/goemon64recomp-android",
+          "repo": "ogdanimal/Goemon64Recomp-Android",
+          "name": "Goemon64Recomp-Android",
+          "kind": "RECOMP",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/ogdanimal/Goemon64Recomp-Android#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/ogdanimal/Goemon64Recomp-Android#readme",
+            "https://github.com/ogdanimal/Goemon64Recomp-Android/releases/tag/v1.0.8"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v1.0.8",
+          "verifiedAssets": [
+            "Goemon64Recomp-1.0.8-arm64-v8a.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harvest-moon-64",
+      "title": "Harvest Moon 64",
+      "aliases": [
+        "HarvestMoon64Recomp"
+      ],
+      "genre": "Simulação",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "igawa6/harvestmoon64recomp",
+          "repo": "igawa6/HarvestMoon64Recomp",
+          "name": "HarvestMoon64Recomp",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/igawa6/HarvestMoon64Recomp#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/igawa6/HarvestMoon64Recomp#readme",
+            "https://github.com/igawa6/HarvestMoon64Recomp/releases/tag/v0.2.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.2.0",
+          "verifiedAssets": [
+            "hm64recomp-android-0.2.0.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pokemon-gold-silver-gen2recomped",
+      "title": "Pokémon Gold/Silver (Gen2Recomped)",
+      "aliases": [
+        "Gen2Recomped"
+      ],
+      "genre": "RPG",
+      "platform": "Game Boy Color",
+      "variants": [
+        {
+          "id": "underdecoded/gen2recomped",
+          "repo": "UNDERdecoded/Gen2Recomped",
+          "name": "Gen2Recomped",
+          "kind": "ENGINE",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/UNDERdecoded/Gen2Recomped#readme",
+          "requirements": "",
+          "gameFiles": "ROM própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/UNDERdecoded/Gen2Recomped#readme",
+            "https://github.com/UNDERdecoded/Gen2Recomped/releases/tag/v0.8.58"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.8.58",
+          "verifiedAssets": [
+            "Gen2Recomped-0.8.58-android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crash-bandicoot",
+      "title": "Crash Bandicoot",
+      "aliases": [
+        "CrashBandicoot-Launcher"
+      ],
+      "genre": "Plataforma",
+      "platform": "PS1",
+      "variants": [
+        {
+          "id": "matteo842/crashbandicoot-launcher",
+          "repo": "Matteo842/CrashBandicoot-Launcher",
+          "name": "CrashBandicoot-Launcher",
+          "kind": "DECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Matteo842/CrashBandicoot-Launcher#readme",
+          "requirements": "",
+          "gameFiles": "ISO própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Matteo842/CrashBandicoot-Launcher#readme",
+            "https://github.com/Matteo842/CrashBandicoot-Launcher/releases/tag/2.6"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "2.6",
+          "verifiedAssets": [
+            "CrashBandicoot-2.6.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "silent-hill",
+      "title": "Silent Hill",
+      "aliases": [
+        "silent-hill-decomp"
+      ],
+      "genre": "Terror",
+      "platform": "PS1",
+      "variants": [
+        {
+          "id": "slickamogus/silent-hill-decomp",
+          "repo": "SlickAmogus/silent-hill-decomp",
+          "name": "silent-hill-decomp",
+          "kind": "DECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/SlickAmogus/silent-hill-decomp#readme",
+          "requirements": "",
+          "gameFiles": "ISO própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/SlickAmogus/silent-hill-decomp#readme",
+            "https://github.com/SlickAmogus/silent-hill-decomp/releases/tag/realtime"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "SilentHill-android.apk",
+          "verifiedTag": "realtime",
+          "verifiedAssets": [
+            "SilentHill-android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goldeneye-007-xbla",
+      "title": "GoldenEye 007 (XBLA)",
+      "aliases": [
+        "GoldenEye-Recomp"
+      ],
+      "genre": "Ação",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "jeffory/goldeneye-recomp",
+          "repo": "jeffory/GoldenEye-Recomp",
+          "name": "GoldenEye-Recomp",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/jeffory/GoldenEye-Recomp#readme",
+          "requirements": "",
+          "gameFiles": "Arquivos XBLA",
+          "controller": "",
+          "evidence": [
+            "https://github.com/jeffory/GoldenEye-Recomp#readme",
+            "https://github.com/jeffory/GoldenEye-Recomp/releases/tag/v1.7.1"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v1.7.1",
+          "verifiedAssets": [
+            "GoldenEye-Recomp-v1.7.1-android-arm64.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "castlevania-legacy-of-darkness",
+      "title": "Castlevania: Legacy of Darkness",
+      "aliases": [
+        "cvlod_recomp"
+      ],
+      "genre": "Ação",
+      "platform": "N64",
+      "variants": [
+        {
+          "id": "sergiomanzur/cvlod_recomp",
+          "repo": "sergiomanzur/cvlod_recomp",
+          "name": "cvlod_recomp",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/sergiomanzur/cvlod_recomp#readme",
+          "requirements": "",
+          "gameFiles": "ROM .z64",
+          "controller": "",
+          "evidence": [
+            "https://github.com/sergiomanzur/cvlod_recomp#readme",
+            "https://github.com/sergiomanzur/cvlod_recomp/releases/tag/v0.2.31"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.2.31",
+          "verifiedAssets": [
+            "LodRecomp-v0.2.31-android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heroes-of-might-and-magic-iii-vcmi",
+      "title": "Heroes of Might and Magic III (VCMI)",
+      "aliases": [
+        "vcmi"
+      ],
+      "genre": "Estratégia",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "vcmi/vcmi",
+          "repo": "vcmi/vcmi",
+          "name": "vcmi",
+          "kind": "ENGINE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/vcmi/vcmi#readme",
+          "requirements": "",
+          "gameFiles": "Dados do HoMM3",
+          "controller": "",
+          "evidence": [
+            "https://github.com/vcmi/vcmi#readme",
+            "https://github.com/vcmi/vcmi/releases/tag/1.7.5"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "1.7.5",
+          "verifiedAssets": [
+            "VCMI-Android-arm64-v8a.apk",
+            "VCMI-Android-armeabi-v7a.apk",
+            "VCMI-Android-x86_64.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cave-story-doukutsu-rs",
+      "title": "Cave Story (doukutsu-rs)",
+      "aliases": [
+        "doukutsu-rs"
+      ],
+      "genre": "Plataforma",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "doukutsu-rs/doukutsu-rs",
+          "repo": "doukutsu-rs/doukutsu-rs",
+          "name": "doukutsu-rs",
+          "kind": "ENGINE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/doukutsu-rs/doukutsu-rs#readme",
+          "requirements": "",
+          "gameFiles": "Dados freeware ou Cave Story+",
+          "controller": "",
+          "evidence": [
+            "https://github.com/doukutsu-rs/doukutsu-rs#readme",
+            "https://github.com/doukutsu-rs/doukutsu-rs/releases/tag/1.0.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "1.0.0",
+          "verifiedAssets": [
+            "doukutsu-rs_android_1.0.0.universal.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skate-3",
+      "title": "Skate 3",
+      "aliases": [
+        "Skate3-Mobile"
+      ],
+      "genre": "Esporte",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "buku313/skate3-mobile",
+          "repo": "Buku313/Skate3-Mobile",
+          "name": "Skate3-Mobile",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/Buku313/Skate3-Mobile#readme",
+          "requirements": "",
+          "gameFiles": "Dump X360",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Buku313/Skate3-Mobile#readme",
+            "https://github.com/Buku313/Skate3-Mobile/releases/tag/v2.1.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v2.1.0",
+          "verifiedAssets": [
+            "Skate3-Mobile-Android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zelda-echoes-of-wisdom-eowrecomp",
+      "title": "Zelda: Echoes of Wisdom (EoWRecomp)",
+      "aliases": [
+        "EoWRecomp"
+      ],
+      "genre": "Aventura",
+      "platform": "Switch",
+      "variants": [
+        {
+          "id": "nycolazs/eowrecomp",
+          "repo": "Nycolazs/EoWRecomp",
+          "name": "EoWRecomp",
+          "kind": "RECOMP",
+          "stage": "Alpha",
+          "setup": "EXTRA",
+          "channel": "ALL",
+          "guide": "https://github.com/Nycolazs/EoWRecomp#readme",
+          "requirements": "",
+          "gameFiles": "Dump + keys",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Nycolazs/EoWRecomp#readme",
+            "https://github.com/Nycolazs/EoWRecomp/releases/tag/alpha_1"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "alpha_1",
+          "verifiedAssets": [
+            "EoWRecomp-alpha_1-Android-arm64.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resident-evil-4-cubeevil4",
+      "title": "Resident Evil 4 (CubeEvil4)",
+      "aliases": [
+        "CubeEvil4-Android"
+      ],
+      "genre": "Terror",
+      "platform": "GameCube",
+      "variants": [
+        {
+          "id": "andiweli/cubeevil4-android",
+          "repo": "Andiweli/CubeEvil4-Android",
+          "name": "CubeEvil4-Android",
+          "kind": "DECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Andiweli/CubeEvil4-Android#readme",
+          "requirements": "",
+          "gameFiles": "ISO própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/Andiweli/CubeEvil4-Android#readme",
+            "https://github.com/Andiweli/CubeEvil4-Android/releases/tag/0.99.18-rc"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "-Android.apk",
+          "verifiedTag": "0.99.18-rc",
+          "verifiedAssets": [
+            "CubeEvil4-0.99.18-Android.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pikmin-e-pikmin-2-open-nectar",
+      "title": "Pikmin e Pikmin 2 (Open Nectar)",
+      "aliases": [
+        "Open-Nectar---Pikmin-Native-PC-Mobile-Port"
+      ],
+      "genre": "Estratégia",
+      "platform": "GameCube",
+      "variants": [
+        {
+          "id": "ssunnking/open-nectar---pikmin-native-pc-mobile-port",
+          "repo": "SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port",
+          "name": "Open-Nectar---Pikmin-Native-PC-Mobile-Port",
+          "kind": "DECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port#readme",
+          "requirements": "",
+          "gameFiles": "ISO própria",
+          "controller": "",
+          "evidence": [
+            "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port#readme",
+            "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/tag/1.3"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "1.3",
+          "verifiedAssets": [
+            "open_nectar_1.3.apk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fallout-2-community-edition",
+      "title": "Fallout 2 (Community Edition)",
+      "aliases": [
+        "fallout2-ce"
+      ],
+      "genre": "RPG",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "alexbatalov/fallout2-ce",
+          "repo": "alexbatalov/fallout2-ce",
+          "name": "fallout2-ce",
+          "kind": "ENGINE",
+          "stage": "Estável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/alexbatalov/fallout2-ce#readme",
+          "requirements": "",
+          "gameFiles": "Arquivos do jogo (GOG/Steam)",
+          "controller": "",
+          "evidence": [
+            "https://github.com/alexbatalov/fallout2-ce#readme",
+            "https://github.com/alexbatalov/fallout2-ce/releases/tag/v1.3.0"
+          ],
+          "checked": "2026-11-17",
+          "note": "",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v1.3.0",
+          "verifiedAssets": [
+            "fallout2-ce-android.apk"
+          ]
+        }
+      ]
+    }
+  ]
+}
