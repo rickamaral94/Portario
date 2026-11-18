@@ -39,7 +39,7 @@ jobs:
           profile: pixel_6
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           disable-animations: true
-          script: bash scripts/smoke-android.sh Portario-0.1.0-debug.apk screenshots
+          script: ./gradlew connectedDebugAndroidTest && bash scripts/smoke-android.sh Portario-0.1.0-debug.apk screenshots
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -24,6 +24,8 @@ sha256sum app/build/outputs/apk/debug/app-debug.apk
 
 O GitHub Actions gera o artefato **Portario-debug**. A v0.1.0 usa assinatura de debug. Para distribuição oficial, configure uma chave de release sob controle do mantenedor antes de distribuir a primeira versão de produção.
 
+Com um emulador conectado, `./gradlew connectedDebugAndroidTest` simula dois ciclos do WorkManager e respostas HTTP do GitHub sem consumir a cota real. A suíte verifica o cache e o ETag, a retomada após o limite e a separação entre acesso negado e limite de consultas.
+
 ## Catálogo
 
 O arquivo [catalog.json](app/src/main/assets/catalog.json) contém o catálogo de fábrica. Para adicionar uma entrada, mantenha `schema: 1`, crie um ID estável para o jogo e adicione uma variante no array `variants`. Use o ID em minúsculas `dono/repositório` para a variante e `repo` com a grafia da fonte oficial.
