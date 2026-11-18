@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - publish-portario-v0.1.0-beta.3
+  pull_request:
+    branches:
+      - main
 
 permissions:
   actions: read
@@ -11,6 +14,7 @@ permissions:
 
 jobs:
   publish:
+    if: github.event_name == 'push' || github.head_ref == 'publish-portario-v0.1.0-beta.3'
     runs-on: ubuntu-latest
     steps:
       - name: Reject an existing release
