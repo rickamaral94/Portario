@@ -94,6 +94,33 @@ share() {
   adb shell am start -W -n "$activity" -a android.intent.action.SEND -t text/plain \
     --es android.intent.extra.TEXT "$1" >/dev/null
 }
+wait_for_network() {
+  local default_network
+  for attempt in $(seq 1 20); do
+    default_network=$(adb shell dumpsys connectivity | sed -nE 's/^Active default network: ([0-9]+).*/\1/p' | head -n 1)
+    if [[ -n "$default_network" ]] && adb shell dumpsys connectivity \
+      | grep -E "NetworkAgentInfo.*network\{$default_network\}.*VALIDATED" >/dev/null; then
+      return
+    fi
+    sleep 2
+  done
+  echo 'The emulator has no validated default network after enabling Wi-Fi and mobile data' >&2
+  return 1
+}
+check_shared_source() {
+  local url=$1 label=$2 point
+  share "$url"
+  for attempt in $(seq 1 15); do
+    if uia; then
+      if visible "$label"; then return; fi
+      if visible 'Não foi possível consultar o GitHub' && point=$(visible 'Consultar fonte' exact); then
+        adb shell input tap $point
+      fi
+    fi
+    sleep 3
+  done
+  wait_for "$label"
+}
 restore() {
   adb shell svc wifi enable >/dev/null 2>&1 || true
   adb shell svc data enable >/dev/null 2>&1 || true
@@ -146,16 +173,15 @@ adb shell svc wifi enable
 adb shell svc data enable >/dev/null 2>&1 || true
 
 if [[ ${PORTARIO_NETWORK_SMOKE:-0} == 1 ]]; then
-  share https://github.com/octocat/Hello-World/releases
-  wait_for 'Sem APK publicado'
+  wait_for_network
+  check_shared_source https://github.com/octocat/Hello-World/releases 'Sem APK publicado'
   tap 'Acompanhar'
   wait_for 'Hello-World'
   share https://github.com/octocat/Hello-World
   tap 'Acompanhar'
   wait_for '1 acompanhados'
 
-  share https://github.com/diasurgical/devilutionx/releases
-  wait_for 'devilutionx-android.apk'
+  check_shared_source https://github.com/diasurgical/devilutionx/releases 'devilutionx-android.apk'
   tap 'Acompanhar'
   wait_for '2 acompanhados'
   tap 'Buscar atualizações'
