@@ -2114,6 +2114,35 @@
           "abis": [
             "arm64-v8a"
           ]
+        },
+        {
+          "id": "zeldawwhdrecomp/zeldawwhdrecomp",
+          "repo": "ZeldaWWHDRecomp/ZeldaWWHDRecomp",
+          "name": "ZeldaWWHDRecomp",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/ZeldaWWHDRecomp/ZeldaWWHDRecomp#android",
+          "requirements": "Android 13+, ARM64 e Vulkan 1.3.",
+          "gameFiles": "Wii U USA ou Europa: .wud/.wux com chaves próprias, arquivo .wua ou pasta já extraída. O preparo é feito uma vez no aparelho.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/ZeldaWWHDRecomp/ZeldaWWHDRecomp#readme",
+            "https://github.com/ZeldaWWHDRecomp/ZeldaWWHDRecomp/releases/tag/v0.5.1"
+          ],
+          "checked": "2026-11-18",
+          "note": "Upstream oficial agora publica APK Android assinado com chave própria do projeto. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": "android-arm64",
+          "verifiedTag": "v0.5.1",
+          "verifiedAssets": [
+            "WindWakerHD-v0.5.1-android-arm64.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
         }
       ]
     },
@@ -4062,6 +4091,230 @@
           "abis": [
             "arm64-v8a",
             "armeabi-v7a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ninja-gaiden-2",
+      "title": "Ninja Gaiden II",
+      "aliases": [
+        "ninja gaiden 2",
+        "ng2",
+        "izuna",
+        "izunarecomp"
+      ],
+      "genre": "Ação",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "yaibakamikaze/izunarecomp",
+          "repo": "YaibaKamikaze/IzunaRecomp",
+          "name": "IzunaRecomp",
+          "kind": "RECOMP",
+          "stage": "Prévia",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/YaibaKamikaze/IzunaRecomp#android",
+          "requirements": "Android 11+, ARM64, Snapdragon/Adreno e driver Turnip. O driver Qualcomm do sistema não executa os shaders atuais.",
+          "gameFiles": "Pasta extraída da sua cópia de Ninja Gaiden II para Xbox 360, contendo default.xex.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/YaibaKamikaze/IzunaRecomp#readme",
+            "https://github.com/YaibaKamikaze/IzunaRecomp/releases/tag/v0.2.2"
+          ],
+          "checked": "2026-11-18",
+          "note": "APK Android inicial, com desempenho ainda ruim segundo o mantenedor. Testado por ele no AYN Thor com Snapdragon 8 Gen 2; compatibilidade física no Odin 2 Portal Pro é desconhecida. A versão geral v0.2.2.1 não publica APK Android; o app seleciona a v0.2.2.",
+          "upstream": "gamboozino/ng2recomp",
+          "filter": "android",
+          "verifiedTag": "v0.2.2",
+          "verifiedAssets": [
+            "IzunaRecomp-0.2.2-android.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pokemon-snap",
+      "title": "Pokémon Snap",
+      "aliases": [
+        "pokemon snap 64",
+        "snap64",
+        "snap64recomp"
+      ],
+      "genre": "Aventura",
+      "platform": "Nintendo 64",
+      "variants": [
+        {
+          "id": "jackandbeans/snap64recomp",
+          "repo": "JackandBeans/Snap64Recomp",
+          "name": "Snap64Recomp",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/JackandBeans/Snap64Recomp#android-beta",
+          "requirements": "Android 10+, ARM64 e Vulkan 1.2.",
+          "gameFiles": "ROM própria do cartucho americano de Pokémon Snap, SHA-1 edc7c49cc568c045fe48be0d18011c30f393cbaf.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/JackandBeans/Snap64Recomp#readme",
+            "https://github.com/JackandBeans/Snap64Recomp/releases/tag/v1.1.8"
+          ],
+          "checked": "2026-11-18",
+          "note": "Android ainda é beta. O mantenedor documenta teste em Snapdragon 8 Elite; compatibilidade física no Odin 2 Portal Pro é desconhecida. Controles por toque, gamepad e giroscópio são documentados.",
+          "upstream": "",
+          "filter": "android",
+          "verifiedTag": "v1.1.8",
+          "verifiedAssets": [
+            "Snap64Recomp-1.1.8-android.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fable-2",
+      "title": "Fable II",
+      "aliases": [
+        "fable 2",
+        "fabledroid",
+        "fable ii goty"
+      ],
+      "genre": "RPG",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "hardsilinder/fabledroid",
+          "repo": "hardsilinder/FableDroid",
+          "name": "FableDroid",
+          "kind": "RECOMP",
+          "stage": "Beta jogável",
+          "setup": "EXTRA",
+          "channel": "BETA",
+          "guide": "https://github.com/hardsilinder/FableDroid#installation",
+          "requirements": "Android 12+, ARM64, Vulkan 1.1+, 8 GB de RAM no mínimo e cerca de 15 GB livres durante a instalação. Adreno 7xx é fortemente recomendado.",
+          "gameFiles": "ISO própria de uma versão compatível de Fable II. GOTY USA/Europa é a referência; consulte a tabela oficial de versões.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/hardsilinder/FableDroid#readme",
+            "https://github.com/hardsilinder/FableDroid/releases/tag/v0.6.3-beta"
+          ],
+          "checked": "2026-11-18",
+          "note": "Importa a ISO diretamente no aparelho, sem PC. O mantenedor registra 30 FPS no AYN Thor (Snapdragon 8 Gen 2/Adreno 740) e ainda lista falhas gráficas. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "himdo/Fable-2-Recomp",
+          "filter": "",
+          "verifiedTag": "v0.6.3-beta",
+          "verifiedAssets": [
+            "FableDroid-0.6.3-beta.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nimbus-recompilation-project",
+      "title": "Nimbus Recompilation Project",
+      "aliases": [
+        "nimbus",
+        "dragon ball z budokai",
+        "budokai 2",
+        "dragon ball z sagas",
+        "supersonic warriors",
+        "taiketsu",
+        "tenkaichi tag team",
+        "shin budokai",
+        "another road",
+        "infinite world",
+        "super dragon ball z",
+        "budokai tenkaichi 3",
+        "ridge racer 2",
+        "ultimate ninja 5",
+        "gundam vs gundam next plus"
+      ],
+      "genre": "Coleção",
+      "platform": "GameCube · GBA · PSP · PS2",
+      "variants": [
+        {
+          "id": "thebabyhippo303/nimbus-recompilation-project",
+          "repo": "thebabyhippo303/nimbus-recompilation-project",
+          "name": "Nimbus Recompilation Project",
+          "kind": "RECOMP",
+          "stage": "Alpha",
+          "setup": "EXTRA",
+          "channel": "BETA",
+          "guide": "https://github.com/thebabyhippo303/nimbus-recompilation-project#readme",
+          "requirements": "Android 13+, ARM64 e GPU Vulkan. O APK verificado tem aproximadamente 505 MiB.",
+          "gameFiles": "Discos, ROMs ou ISOs próprios das regiões e revisões aceitas para cada um dos 14 jogos, conforme a lista oficial.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/thebabyhippo303/nimbus-recompilation-project#readme",
+            "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/tag/alpha-2.2"
+          ],
+          "checked": "2026-11-18",
+          "note": "Um único launcher reúne 14 ports nativos e oferece toque, controle, multiplayer local e online. A hotfix alpha-2.2.1 não contém APK; Android permanece na alpha-2.2. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": "Android-arm64",
+          "verifiedTag": "alpha-2.2",
+          "verifiedAssets": [
+            "Nimbus-Alpha-2.2-Android-arm64.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "super-mario-land-2",
+      "title": "Super Mario Land 2: 6 Golden Coins",
+      "aliases": [
+        "super mario land 2",
+        "sml2",
+        "6 golden coins",
+        "sml2dx"
+      ],
+      "genre": "Plataforma",
+      "platform": "Game Boy",
+      "variants": [
+        {
+          "id": "mstan/supermarioland2recomp",
+          "repo": "mstan/SuperMarioLand2Recomp",
+          "name": "SuperMarioLand2Recomp",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/mstan/SuperMarioLand2Recomp#existing-android-and-legacy-workflows",
+          "requirements": "Android ARM64. A release Android não teve validação de gameplay em dispositivo pelo mantenedor.",
+          "gameFiles": "ROM própria USA/Europa V1.0, CRC32 D5EC24E4, além dos boot ROMs DMG e CGB exigidos pelo launcher.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/mstan/SuperMarioLand2Recomp#readme",
+            "https://github.com/mstan/SuperMarioLand2Recomp/releases/tag/v0.2.0"
+          ],
+          "checked": "2026-11-18",
+          "note": "Inclui o jogo fiel e a opção DX colorida derivada da mesma ROM. O RC mais novo é pré-release; o canal estável usa v0.2.0. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "mstan/gbrecompiled",
+          "filter": "android-arm64",
+          "verifiedTag": "v0.2.0",
+          "verifiedAssets": [
+            "SuperMarioLand2Recomp-android-arm64-v0.2.0.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
           ]
         }
       ]
