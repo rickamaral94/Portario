@@ -1,0 +1,140 @@
+name: Publish Portario beta 4
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish:
+    if: github.head_ref == 'publish-portario-v0.1.0-beta.4'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download validated artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --fail --location \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/14623577395/zip" \
+            --output artifact.zip
+          mkdir artifact
+          unzip artifact.zip -d artifact
+          test -f artifact/Portario-debug.apk
+          test -f artifact/Portario-debug.apk.sha256
+
+      - name: Verify SHA, package and embedded catalog
+        run: |
+          cd artifact
+          sha256sum --check Portario-debug.apk.sha256
+          apk_sha=$(sha256sum Portario-debug.apk | cut -d' ' -f1)
+          test -n "$apk_sha"
+          echo "APK_SHA=$apk_sha" >> "$GITHUB_ENV"
+          cd ..
+          build_tools=$(find "$ANDROID_SDK_ROOT/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)
+          "$build_tools/aapt" dump badging artifact/Portario-debug.apk | tee badging.txt
+          grep -q "package: name='br.com.amaral.portario' versionCode='4' versionName='0.1.0-beta.4'" badging.txt
+          unzip -p artifact/Portario-debug.apk assets/catalog.json > catalog.json
+          test "$(jq '.schema' catalog.json)" = 1
+          test "$(jq '.games | length' catalog.json)" = 107
+          test "$(jq '[.games[].variants[]] | length' catalog.json)" = 119
+          test "$(jq '[.games[].id] | unique | length' catalog.json)" = 107
+          test "$(jq '[.games[].variants[].id] | unique | length' catalog.json)" = 119
+          for id in need-for-speed-carbon forza-horizon-2 lost-odyssey sonic-the-hedgehog-2006 devil-may-cry-3-special-edition naruto-shippuden-ultimate-ninja-storm-3; do
+            test "$(jq --arg id "$id" '[.games[] | select(.id == $id)] | length' catalog.json)" = 1
+          done
+
+      - name: Compare signing certificate with beta 3
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir previous
+          gh release download v0.1.0-beta.3 --repo "$GITHUB_REPOSITORY" --pattern '*.apk' --dir previous
+          previous_apk=$(find previous -maxdepth 1 -type f -name '*.apk' | head -1)
+          test -n "$previous_apk"
+          apksigner=$(find "$ANDROID_SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -1)
+          "$apksigner" verify --print-certs artifact/Portario-debug.apk | tee beta4-certificate.txt
+          "$apksigner" verify --print-certs "$previous_apk" | tee beta3-certificate.txt
+          beta4_cert=$(sed -n 's/^.*certificate SHA-256 digest: //p' beta4-certificate.txt | head -1)
+          beta3_cert=$(sed -n 's/^.*certificate SHA-256 digest: //p' beta3-certificate.txt | head -1)
+          test -n "$beta4_cert"
+          test -n "$beta3_cert"
+          {
+            echo "BETA4_CERT=$beta4_cert"
+            echo "BETA3_CERT=$beta3_cert"
+            if [ "$beta4_cert" = "$beta3_cert" ]; then
+              echo "SIGNATURE_NOTE=O certificado coincide com a beta 3; a atualização por cima é permitida pela assinatura."
+            else
+              echo "SIGNATURE_NOTE=O certificado debug difere da beta 3. O Android não instalará este APK por cima dela; será necessário desinstalar a beta anterior, o que apaga a biblioteca local."
+            fi
+          } >> "$GITHUB_ENV"
+
+      - name: Publish or verify pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mv artifact/Portario-debug.apk Portario-0.1.0-beta.4-debug.apk
+          sha256sum Portario-0.1.0-beta.4-debug.apk > Portario-0.1.0-beta.4-debug.apk.sha256
+          {
+            echo "Atualização de curadoria do catálogo embarcado do Portário."
+            echo
+            echo "Incluído:"
+            echo "- Need for Speed: Carbon — NFS Carbon Android Recomp"
+            echo "- Forza Horizon 2 — FH2 Recompiled"
+            echo "- Lost Odyssey — Lost Odyssey Recomp"
+            echo "- Sonic the Hedgehog (2006) — MarathonRecomp Android"
+            echo "- Devil May Cry 3: Special Edition — Devil May Cry 3 Recomp"
+            echo "- Naruto Shippuden: Ultimate Ninja Storm 3 Full Burst — Naruto Storm 3 Recomp"
+            echo
+            echo "Catálogo: 107 jogos e 119 variantes."
+            echo
+            echo "Validação:"
+            echo "- testes unitários e build debug"
+            echo "- 4 testes instrumentados no emulador"
+            echo "- smoke test com catálogo offline, GitHub, download, instalação e abertura"
+            echo "- Android lint"
+            echo "- pacote br.com.amaral.portario, versionCode 4, versionName 0.1.0-beta.4"
+            echo
+            echo "APK SHA-256:"
+            echo "$APK_SHA"
+            echo
+            echo "Assinatura:"
+            echo "$SIGNATURE_NOTE"
+            echo "- beta 4: $BETA4_CERT"
+            echo "- beta 3: $BETA3_CERT"
+            echo
+            echo "Build debug de teste, não uma build de distribuição."
+          } > release-notes.md
+          if gh release view v0.1.0-beta.4 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release edit v0.1.0-beta.4 \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Portário 0.1.0-beta.4" \
+              --notes-file release-notes.md \
+              --prerelease
+          else
+            gh release create v0.1.0-beta.4 \
+              Portario-0.1.0-beta.4-debug.apk \
+              Portario-0.1.0-beta.4-debug.apk.sha256 \
+              --repo "$GITHUB_REPOSITORY" \
+              --target ed165c90833beeedea476febcce1474a1ece65cb \
+              --title "Portário 0.1.0-beta.4" \
+              --notes-file release-notes.md \
+              --prerelease
+          fi
+
+      - name: Verify publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          release=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/v0.1.0-beta.4")
+          test "$(jq -r '.prerelease' <<<"$release")" = true
+          test "$(jq -r '.draft' <<<"$release")" = false
+          test "$(jq -r '.target_commitish' <<<"$release")" = ed165c90833beeedea476febcce1474a1ece65cb
+          test "$(jq '[.assets[] | select(.name == "Portario-0.1.0-beta.4-debug.apk")] | length' <<<"$release")" = 1
+          test "$(jq -r '.assets[] | select(.name == "Portario-0.1.0-beta.4-debug.apk") | .digest' <<<"$release")" = "sha256:$APK_SHA"
+          jq '{tag_name,name,prerelease,draft,target_commitish,html_url,assets:[.assets[]|{name,size,digest}]}' <<<"$release"
