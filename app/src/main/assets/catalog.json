@@ -4318,6 +4318,259 @@
           ]
         }
       ]
+    },
+    {
+      "id": "need-for-speed-carbon",
+      "title": "Need for Speed: Carbon",
+      "aliases": [
+        "nfs carbon",
+        "nfsc",
+        "nfs carbon 360"
+      ],
+      "genre": "Corrida",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "codepdbh/nfs-carbon-360-android-recomp",
+          "repo": "codepdbh/NFS-CARBON-360-ANDROID-RECOMP",
+          "name": "NFS Carbon Android Recomp",
+          "kind": "RECOMP",
+          "stage": "Experimental jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/codepdbh/NFS-CARBON-360-ANDROID-RECOMP#android",
+          "requirements": "Android 8+, ARM64, Vulkan 1.1 com descriptor indexing e cerca de 6 GB livres. Drivers externos exigem Android 9+.",
+          "gameFiles": "Cópia extraída da edição Xbox 360 PAL inglesa, com default.xex e as pastas NFS e Movies indicadas pelo mantenedor.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/codepdbh/NFS-CARBON-360-ANDROID-RECOMP#readme",
+            "https://github.com/codepdbh/NFS-CARBON-360-ANDROID-RECOMP/releases/tag/v0.3.3"
+          ],
+          "checked": "2026-11-20",
+          "note": "Renderizador Vulkan nativo e modo Xenos de compatibilidade. Testado pelo mantenedor em Adreno 830; compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": "arm64",
+          "verifiedTag": "v0.3.3",
+          "verifiedAssets": [
+            "NFSCarbon-Android-v0.3.3-arm64.apk"
+          ],
+          "packageId": "com.nfscarbon.android",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forza-horizon-2",
+      "title": "Forza Horizon 2",
+      "aliases": [
+        "fh2",
+        "fh2 recompiled",
+        "forza horizon 2 xbox 360"
+      ],
+      "genre": "Corrida",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "gabrick75/fh2-recompiled",
+          "repo": "Gabrick75/fh2-recompiled",
+          "name": "FH2 Recompiled",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "BETA",
+          "guide": "https://github.com/Gabrick75/fh2-recompiled#running-on-android",
+          "requirements": "Android 8+, ARM64, Vulkan 1.1, 4 GB de RAM no mínimo (6 GB recomendados) e cerca de 8 GB livres.",
+          "gameFiles": "Disco próprio da edição Xbox 360 USA, Title ID 4D530AA4. O launcher pode ler a ISO no aparelho; o renderizador nativo opcional exige biblioteca de shaders gerada no PC.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/Gabrick75/fh2-recompiled#readme",
+            "https://github.com/Gabrick75/fh2-recompiled/releases/tag/v0.4.5.1"
+          ],
+          "checked": "2026-11-20",
+          "note": "Pré-release com renderizador Xenos padrão e Vulkan nativo experimental. A correção atual para telas mais estreitas que 16:9 é provisória. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.4.5.1",
+          "verifiedAssets": [
+            "FH2-Recompiled-0.4.5.1.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lost-odyssey",
+      "title": "Lost Odyssey",
+      "aliases": [
+        "lost odyssey recomp",
+        "lo recomp"
+      ],
+      "genre": "RPG",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "freefrank/lostodysseyrecomp",
+          "repo": "freefrank/LostOdysseyRecomp",
+          "name": "Lost Odyssey Recomp",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/freefrank/LostOdysseyRecomp#android",
+          "requirements": "Android 8+, ARM64 e Vulkan.",
+          "gameFiles": "Conjunto próprio de quatro discos Xbox 360 compatível, asiático multilíngue ou USA/Europa, sem misturar edições. O disco 1 é obrigatório; o app importa imagens no aparelho.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/freefrank/LostOdysseyRecomp#readme",
+            "https://github.com/freefrank/LostOdysseyRecomp/releases/tag/v1.1.0"
+          ],
+          "checked": "2026-11-20",
+          "note": "Suporta toque, gamepad, importação de discos no aparelho e leitura por pasta ou cartão SD. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": "android-arm64",
+          "verifiedTag": "v1.1.0",
+          "verifiedAssets": [
+            "LostOdysseyRecomp-android-arm64-v1.1.0.apk"
+          ],
+          "packageId": "io.github.freefrank.lostodyssey",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sonic-the-hedgehog-2006",
+      "title": "Sonic the Hedgehog (2006)",
+      "aliases": [
+        "sonic 06",
+        "sonic 2006",
+        "marathonrecomp",
+        "marathon recomp"
+      ],
+      "genre": "Plataforma",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "sansnope/marathonrecomp-android",
+          "repo": "SansNope/MarathonRecomp-Android",
+          "name": "MarathonRecomp Android",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/SansNope/MarathonRecomp-Android#playing",
+          "requirements": "Android 10+, ARM64 e Vulkan.",
+          "gameFiles": "Pasta ou ZIP da sua cópia de Sonic the Hedgehog para Xbox 360; o launcher instala os dados e DLCs fornecidos pelo usuário.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/SansNope/MarathonRecomp-Android#readme",
+            "https://github.com/SansNope/MarathonRecomp-Android/releases/tag/v0.3.0"
+          ],
+          "checked": "2026-11-20",
+          "note": "A v0.3.0 adiciona gráficos reduzidos e saída a 75%, testados no POCO F5/Adreno 725. O mantenedor ainda lista gamepads físicos e outras gerações Adreno como não testados; compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "sonicnext-dev/MarathonRecomp",
+          "filter": "arm64-v8a",
+          "verifiedTag": "v0.3.0",
+          "verifiedAssets": [
+            "MarathonRecomp-Android-v0.3.0-arm64-v8a.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devil-may-cry-3-special-edition",
+      "title": "Devil May Cry 3: Special Edition",
+      "aliases": [
+        "dmc3",
+        "devil may cry 3",
+        "dmc3se"
+      ],
+      "genre": "Ação",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "sindufha/devil-may-cry-3-recomp",
+          "repo": "sindufha/Devil-may-cry-3-recomp",
+          "name": "Devil May Cry 3 Recomp",
+          "kind": "RECOMP",
+          "stage": "Prévia experimental",
+          "setup": "EXTRA",
+          "channel": "BETA",
+          "guide": "https://github.com/sindufha/Devil-may-cry-3-recomp#android-build",
+          "requirements": "ARM64 e GPU Vulkan compatível. Android 9+ é necessário para o caminho de driver customizado.",
+          "gameFiles": "Executável dmc3se.exe compatível e pasta completa da edição PC, contendo GDATA.AFS, native/rom e native/sound.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/sindufha/Devil-may-cry-3-recomp#readme",
+            "https://github.com/sindufha/Devil-may-cry-3-recomp/releases/tag/v0.30"
+          ],
+          "checked": "2026-11-20",
+          "note": "Prévia ARM64 via DXVK Native/Vulkan. O repositório publica documentação e APK, mas não o workspace-fonte completo. Testado no POCO F3/Adreno 650; campanha completa, outras GPUs e o Odin 2 Portal Pro permanecem com compatibilidade desconhecida.",
+          "upstream": "",
+          "filter": "",
+          "verifiedTag": "v0.30",
+          "verifiedAssets": [
+            "DMC3-v0.30.apk"
+          ],
+          "packageId": "local.dmc3.runtimeprobe",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naruto-shippuden-ultimate-ninja-storm-3",
+      "title": "Naruto Shippuden: Ultimate Ninja Storm 3 Full Burst",
+      "aliases": [
+        "naruto storm 3",
+        "uns3",
+        "ultimate ninja storm 3",
+        "storm 3 full burst"
+      ],
+      "genre": "Luta",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "wizydeka-lang/naruto-storm3-recomp",
+          "repo": "wizydeka-lang/naruto-storm3-recomp",
+          "name": "Naruto Storm 3 Recomp",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "BETA",
+          "guide": "https://github.com/wizydeka-lang/naruto-storm3-recomp#4-android-experimental",
+          "requirements": "Android 8+, ARM64 e Vulkan 1.3 com inteiros de 64 bits em shaders.",
+          "gameFiles": "Pasta extraída da cópia Xbox 360 Full Burst na revisão aceita pelo projeto; o default.xex deve corresponder ao hash documentado na release.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/wizydeka-lang/naruto-storm3-recomp#readme",
+            "https://github.com/wizydeka-lang/naruto-storm3-recomp/releases/tag/v0.1.4"
+          ],
+          "checked": "2026-11-20",
+          "note": "Prévia com renderer Vulkan nativo, toque, controles USB/Bluetooth e online experimental. Não há teste físico documentado no Odin 2 Portal Pro; compatibilidade desconhecida.",
+          "upstream": "",
+          "filter": "arm64",
+          "verifiedTag": "v0.1.4",
+          "verifiedAssets": [
+            "naruto-storm3-recomp-0.1.4-arm64.apk"
+          ],
+          "packageId": "dev.narutorecomp",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
     }
   ]
 }
