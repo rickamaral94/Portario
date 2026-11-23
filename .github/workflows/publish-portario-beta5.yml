@@ -1,0 +1,78 @@
+name: Publish Portario beta 5
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish:
+    if: github.event.pull_request.head.ref == 'publish/beta-5-2026-11-23'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: rickamaral94/Portario
+      ARTIFACT_ID: '14811023026'
+      EXPECTED_COMMIT: 46f0325127caf9493e852f4d85b12f24f6d6efc2
+      EXPECTED_SHA256: f941d69e4aa0fe3f5a1dcc453468b21e102d4630da770e7d7ce5abad4fa1f14c
+      TAG: v0.1.0-beta.5
+      APK_NAME: Portario-0.1.0-beta.5-debug.apk
+    steps:
+      - name: Download validated APK artifact
+        run: |
+          gh api -H 'Accept: application/vnd.github+json' /repos/$REPO/actions/artifacts/$ARTIFACT_ID/zip > artifact.zip
+          unzip -q artifact.zip -d artifact
+          cp artifact/Portario-debug.apk "$APK_NAME"
+      - name: Verify exact APK, package and version
+        run: |
+          echo "$EXPECTED_SHA256  $APK_NAME" | sha256sum -c -
+          AAPT=$(find "$ANDROID_HOME/build-tools" -type f -name aapt | sort -V | tail -1)
+          "$AAPT" dump badging "$APK_NAME" | grep -F "package: name='br.com.amaral.portario' versionCode='5' versionName='0.1.0-beta.5'"
+          unzip -p "$APK_NAME" assets/catalog.json | jq -e '.schema == 1 and (.games | length) == 111 and ([.games[].variants[]] | length) == 124' >/dev/null
+          printf '%s  %s\n' "$EXPECTED_SHA256" "$APK_NAME" > "$APK_NAME.sha256"
+      - name: Compare signing certificate with beta 4
+        id: signer
+        run: |
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -1)
+          CERT5=$("$APKSIGNER" verify --print-certs "$APK_NAME" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')
+          gh release download v0.1.0-beta.4 --repo "$REPO" --pattern '*.apk' --dir previous
+          PREV=$(find previous -type f -name '*.apk' -print -quit)
+          CERT4=$("$APKSIGNER" verify --print-certs "$PREV" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')
+          test -n "$CERT5"
+          test -n "$CERT4"
+          printf 'cert5=%s\ncert4=%s\n' "$CERT5" "$CERT4" >> "$GITHUB_OUTPUT"
+      - name: Publish prerelease
+        run: |
+          printf '%s\n' \
+            'Atualização de curadoria do catálogo embarcado.' \
+            '' \
+            'Incluídos:' \
+            '- Donkey Kong Country 2: Diddy’s Kong Quest — DKC2 Android Port' \
+            '- Mortal Kombat vs. DC Universe — MKVDCU Android' \
+            '- SSX 3 — SSX3RecompAndroid' \
+            '- Destroy All Humans! Path of the Furon — ReDAHM Android' \
+            '- Zelda: The Wind Waker HD — variante WindWakerHD Android Plus' \
+            '' \
+            'Corrigido:' \
+            '- Nimbus atualizado para Alpha 2.3 e 15 jogos, incluindo Bleach: Heat the Soul 7.' \
+            '' \
+            'Catálogo: 111 jogos e 124 variantes.' \
+            'Build: debug, gerada pelo GitHub Actions a partir do commit validado 46f0325127caf9493e852f4d85b12f24f6d6efc2.' \
+            'SHA-256: f941d69e4aa0fe3f5a1dcc453468b21e102d4630da770e7d7ce5abad4fa1f14c.' \
+            '' > release-notes.md
+          if [ '${{ steps.signer.outputs.cert5 }}' != '${{ steps.signer.outputs.cert4 }}' ]; then
+            printf '%s\n' 'Atenção: a assinatura debug difere da beta.4; desinstale a versão anterior antes de instalar esta build. A biblioteca do Portário será removida com a desinstalação.' >> release-notes.md
+          else
+            printf '%s\n' 'A assinatura debug coincide com a beta.4 e permite atualização por cima dela.' >> release-notes.md
+          fi
+          printf '%s\n%s\n' '' "Certificado SHA-256 desta build: ${{ steps.signer.outputs.cert5 }}." >> release-notes.md
+          gh release create "$TAG" "$APK_NAME" "$APK_NAME.sha256" --repo "$REPO" --target "$EXPECTED_COMMIT" --title 'Portário 0.1.0-beta.5' --notes-file release-notes.md --prerelease --latest=false
+      - name: Verify publication
+        run: |
+          test "$(gh release view "$TAG" --repo "$REPO" --json isPrerelease,isDraft,targetCommitish --jq '.isPrerelease|tostring')" = true
+          test "$(gh release view "$TAG" --repo "$REPO" --json isDraft --jq '.isDraft|tostring')" = false
+          gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name' | grep -Fx "$APK_NAME"
+          gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name' | grep -Fx "$APK_NAME.sha256"
