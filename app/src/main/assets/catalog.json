@@ -2116,6 +2116,35 @@
           ]
         },
         {
+          "id": "nycolazs/windwakerhd-android-plus",
+          "repo": "Nycolazs/WindWakerHD-Android-Plus",
+          "name": "WindWakerHD Android Plus",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/Nycolazs/WindWakerHD-Android-Plus#readme",
+          "requirements": "Android 11+, ARM64, Vulkan 1.1, cerca de 2 GB livres e 2 GB de RAM livres durante o preparo.",
+          "gameFiles": "Wii U USA, Europa ou Japão: dump próprio .wud/.wux com chaves ou arquivo .wua.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/Nycolazs/WindWakerHD-Android-Plus#readme",
+            "https://github.com/Nycolazs/WindWakerHD-Android-Plus/releases/tag/v1.14"
+          ],
+          "checked": "2026-11-23",
+          "note": "Fork da variante Enhanced com tradução pt-BR integrada, editor de HUD, suporte a .wua, giroscópio e ajustes de controle. Testado pelo mantenedor em Snapdragon 865; compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "SSunnKing/ZeldaWWHDRecompAndroid---ENHANCED",
+          "filter": ".apk",
+          "verifiedTag": "v1.14",
+          "verifiedAssets": [
+            "WindWakerHD-Android-Plus-v1.14.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        },
+        {
           "id": "zeldawwhdrecomp/zeldawwhdrecomp",
           "repo": "ZeldaWWHDRecomp/ZeldaWWHDRecomp",
           "name": "ZeldaWWHDRecomp",
@@ -4240,7 +4269,8 @@
         "budokai tenkaichi 3",
         "ridge racer 2",
         "ultimate ninja 5",
-        "gundam vs gundam next plus"
+        "gundam vs gundam next plus",
+        "bleach heat the soul 7"
       ],
       "genre": "Coleção",
       "platform": "GameCube · GBA · PSP · PS2",
@@ -4255,19 +4285,19 @@
           "channel": "BETA",
           "guide": "https://github.com/thebabyhippo303/nimbus-recompilation-project#readme",
           "requirements": "Android 13+, ARM64 e GPU Vulkan. O APK verificado tem aproximadamente 505 MiB.",
-          "gameFiles": "Discos, ROMs ou ISOs próprios das regiões e revisões aceitas para cada um dos 14 jogos, conforme a lista oficial.",
+          "gameFiles": "Discos, ROMs ou ISOs próprios das regiões e revisões aceitas para cada um dos 15 jogos, conforme a lista oficial.",
           "controller": "yes",
           "evidence": [
             "https://github.com/thebabyhippo303/nimbus-recompilation-project#readme",
-            "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/tag/alpha-2.2"
+            "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/tag/alpha-2.3"
           ],
-          "checked": "2026-11-18",
-          "note": "Um único launcher reúne 14 ports nativos e oferece toque, controle, multiplayer local e online. A hotfix alpha-2.2.1 não contém APK; Android permanece na alpha-2.2. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "checked": "2026-11-23",
+          "note": "Um único launcher reúne 15 ports nativos e oferece toque, controle, multiplayer local e online. A alpha-2.3 adiciona Bleach: Heat the Soul 7 (PSP, Ásia, NPHG00087). Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
           "upstream": "",
           "filter": "Android-arm64",
-          "verifiedTag": "alpha-2.2",
+          "verifiedTag": "alpha-2.3",
           "verifiedAssets": [
-            "Nimbus-Alpha-2.2-Android-arm64.apk"
+            "Nimbus-Alpha-2.3-Android-arm64.apk"
           ],
           "packageId": "",
           "abis": [
@@ -4566,6 +4596,174 @@
             "naruto-storm3-recomp-0.1.4-arm64.apk"
           ],
           "packageId": "dev.narutorecomp",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "donkey-kong-country-2-diddys-kong-quest",
+      "title": "Donkey Kong Country 2: Diddy's Kong Quest",
+      "aliases": [
+        "dkc2",
+        "diddys kong quest",
+        "donkey kong country 2"
+      ],
+      "genre": "Plataforma",
+      "platform": "SNES",
+      "variants": [
+        {
+          "id": "deivid22srk/dkc2-android-port",
+          "repo": "deivid22srk/DKC2-Android-Port",
+          "name": "DKC2 Android Port",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/deivid22srk/DKC2-Android-Port/blob/main/docs/PORT_ANDROID.md",
+          "requirements": "Android 8+, ARM64.",
+          "gameFiles": "ROM própria norte-americana v1.0, sem header, SHA-256 35421a9af9dd011b40b91f792192af9f99c93201d8d394026bdfb42cbf2d8633.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/deivid22srk/DKC2-Android-Port#android",
+            "https://github.com/deivid22srk/DKC2-Android-Port/releases/tag/v0.0.10-android"
+          ],
+          "checked": "2026-11-23",
+          "note": "APK ARM64 publicado pelo mantenedor; o jogo é preparado a partir da ROM do usuário. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "elliotttate/DKC2Recomp",
+          "filter": "android-arm64.apk",
+          "verifiedTag": "v0.0.10-android",
+          "verifiedAssets": [
+            "DKC2Recomp-v0.0.10-android-arm64.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mortal-kombat-vs-dc-universe",
+      "title": "Mortal Kombat vs. DC Universe",
+      "aliases": [
+        "mk vs dc",
+        "mkvdcu",
+        "mortal kombat dc"
+      ],
+      "genre": "Luta",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "lemooz/mkvdcu-android",
+          "repo": "lemooz/MKVDCU-Android",
+          "name": "MKVDCU Android",
+          "kind": "RECOMP",
+          "stage": "Alpha experimental",
+          "setup": "EXTRA",
+          "channel": "BETA",
+          "guide": "https://github.com/lemooz/MKVDCU-Android#install-and-play",
+          "requirements": "Android 9+, ARM64 e Vulkan 1.1.",
+          "gameFiles": "Imagem própria e legalmente obtida de Mortal Kombat vs. DC Universe, selecionada pelo app.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/lemooz/MKVDCU-Android#readme",
+            "https://github.com/lemooz/MKVDCU-Android/releases/tag/v0.1.21"
+          ],
+          "checked": "2026-11-23",
+          "note": "Use o APK normal; o asset diagnostic é voltado a investigação e pode afetar o desempenho. O mantenedor documenta Snapdragon 8 Elite jogável e Exynos 1380 chegando ao jogo; no Odin 2 Portal Pro a compatibilidade é desconhecida.",
+          "upstream": "KawaiiBunga/MKVDCU-Recomp",
+          "filter": "mkvdcu-android-v0.1.21.apk",
+          "verifiedTag": "v0.1.21",
+          "verifiedAssets": [
+            "mkvdcu-android-v0.1.21.apk",
+            "mkvdcu-android-v0.1.21-diagnostic.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ssx-3",
+      "title": "SSX 3",
+      "aliases": [
+        "ssx3",
+        "ssx 3 android"
+      ],
+      "genre": "Esporte",
+      "platform": "Xbox",
+      "variants": [
+        {
+          "id": "douglashalse/ssx3recompandroid",
+          "repo": "DouglasHalse/SSX3RecompAndroid",
+          "name": "SSX3RecompAndroid",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/DouglasHalse/SSX3RecompAndroid#install-and-play",
+          "requirements": "Android 11+, ARM64 e cerca de 2,5 GB livres para os dados.",
+          "gameFiles": "Imagem própria do disco PAL de SSX 3 para Xbox; discos USA e Japão são recusados.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/DouglasHalse/SSX3RecompAndroid#readme",
+            "https://github.com/DouglasHalse/SSX3RecompAndroid/releases/tag/android-v0.1.11"
+          ],
+          "checked": "2026-11-23",
+          "note": "O app valida e extrai aproximadamente 2,1 GB da imagem PAL para seu armazenamento privado. Possui controles de toque e aceita controle físico como jogador 1. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "koenhendriks/SSX3-recomp",
+          "filter": ".apk",
+          "verifiedTag": "android-v0.1.11",
+          "verifiedAssets": [
+            "ssx3-android-0.1.11.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "destroy-all-humans-path-of-the-furon",
+      "title": "Destroy All Humans! Path of the Furon",
+      "aliases": [
+        "path of the furon",
+        "redahm",
+        "destroy all humans 3"
+      ],
+      "genre": "Ação",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "deivid22srk/redahm-android",
+          "repo": "deivid22srk/redahm-android",
+          "name": "ReDAHM Android",
+          "kind": "RECOMP",
+          "stage": "Experimental",
+          "setup": "MANUAL",
+          "channel": "STABLE",
+          "guide": "https://github.com/deivid22srk/redahm-android#installing-game-data",
+          "requirements": "Android 8+, ARM64, Vulkan 1.1 e cerca de 6 GB livres para os dados do jogo.",
+          "gameFiles": "Versão USA extraída de Xbox 360, com default.xex e a pasta KronosGame em um dos caminhos documentados.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/deivid22srk/redahm-android#readme",
+            "https://github.com/deivid22srk/redahm-android/releases/tag/v0.1.0"
+          ],
+          "checked": "2026-11-23",
+          "note": "Port ReXGlue em estágio experimental. No Android 11+ pode solicitar acesso a todos os arquivos. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "masterspike52/reDAHM",
+          "filter": ".apk",
+          "verifiedTag": "v0.1.0",
+          "verifiedAssets": [
+            "redahm-android-release-v0.1.0.apk"
+          ],
+          "packageId": "",
           "abis": [
             "arm64-v8a"
           ]
