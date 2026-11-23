@@ -37,10 +37,10 @@ jobs:
         id: signer
         run: |
           APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -1)
-          CERT5=$("$APKSIGNER" verify --print-certs "$APK_NAME" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')
+          CERT5=$("$APKSIGNER" verify --print-certs "$APK_NAME" 2>/dev/null | awk '/SHA-256/ {print $NF; exit}')
           gh release download v0.1.0-beta.4 --repo "$REPO" --pattern '*.apk' --dir previous
           PREV=$(find previous -type f -name '*.apk' -print -quit)
-          CERT4=$("$APKSIGNER" verify --print-certs "$PREV" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')
+          CERT4=$("$APKSIGNER" verify --print-certs "$PREV" 2>/dev/null | awk '/SHA-256/ {print $NF; exit}')
           test -n "$CERT5"
           test -n "$CERT4"
           printf 'cert5=%s\ncert4=%s\n' "$CERT5" "$CERT4" >> "$GITHUB_OUTPUT"
@@ -72,7 +72,7 @@ jobs:
           gh release create "$TAG" "$APK_NAME" "$APK_NAME.sha256" --repo "$REPO" --target "$EXPECTED_COMMIT" --title 'Portário 0.1.0-beta.5' --notes-file release-notes.md --prerelease --latest=false
       - name: Verify publication
         run: |
-          test "$(gh release view "$TAG" --repo "$REPO" --json isPrerelease,isDraft,targetCommitish --jq '.isPrerelease|tostring')" = true
+          test "$(gh release view "$TAG" --repo "$REPO" --json isPrerelease --jq '.isPrerelease|tostring')" = true
           test "$(gh release view "$TAG" --repo "$REPO" --json isDraft --jq '.isDraft|tostring')" = false
           gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name' | grep -Fx "$APK_NAME"
           gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name' | grep -Fx "$APK_NAME.sha256"
