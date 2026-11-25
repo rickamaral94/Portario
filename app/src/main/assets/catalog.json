@@ -438,6 +438,36 @@
             "arm64-v8a"
           ],
           "apkVersionCode": 18
+        },
+        {
+          "id": "xhyn-ph/xhyn-iv-recomp",
+          "repo": "XHYN-PH/XHYN-IV-recomp",
+          "name": "XHYN IV",
+          "kind": "RECOMP",
+          "stage": "Teste experimental",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/XHYN-PH/XHYN-IV-recomp/blob/main/docs/android/INSTALL.md",
+          "requirements": "Android 10+, ARM64, Vulkan 1.2, 8 GB de RAM recomendados e cerca de 15 GB livres durante a instalação.",
+          "gameFiles": "Imagem própria do disco Xbox 360 USA de GTA IV e Title Update 8, versão 0.0.8.5.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/XHYN-PH/XHYN-IV-recomp#readme",
+            "https://github.com/XHYN-PH/XHYN-IV-recomp/releases/tag/0.5.9.3-xhyn-r2-test12"
+          ],
+          "checked": "2026-11-25",
+          "note": "Fork do LibertyRecompAndroid com interface, controles, giroscópio, drivers, backups e ferramentas de diagnóstico próprios. O mantenedor informa que a recompilação e a validação em aparelho ainda não estão completas; compatibilidade física no Odin 2 Portal Pro é desconhecida. Instala como app separado do upstream.",
+          "upstream": "vaduur/LibertyRecompAndroid",
+          "filter": "XHYN-IV-0.5.9.3-xhyn-r2-test12.apk",
+          "verifiedTag": "0.5.9.3-xhyn-r2-test12",
+          "verifiedAssets": [
+            "XHYN-IV-0.5.9.3-xhyn-r2-test12.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ],
+          "apkVersionCode": 40
         }
       ]
     },
@@ -4762,6 +4792,217 @@
           "verifiedTag": "v0.1.0",
           "verifiedAssets": [
             "redahm-android-release-v0.1.0.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-fantasy-vii",
+      "title": "Final Fantasy VII",
+      "aliases": [
+        "ff7",
+        "ffvii",
+        "ff7 recomp"
+      ],
+      "genre": "RPG",
+      "platform": "PC",
+      "variants": [
+        {
+          "id": "bhuiyah/ff7-recomp-android",
+          "repo": "bhuiyah/ff7-recomp-android",
+          "name": "FF7Recomp Android",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/bhuiyah/ff7-recomp-android#playing",
+          "requirements": "ARM64 e GPU com Vulkan ou OpenGL ES. A versão mínima do Android não está documentada na fonte.",
+          "gameFiles": "Cópia própria da edição PC atual de Final Fantasy VII, preferencialmente Steam. O app pode baixar cerca de 3,3 GB diretamente da conta Steam ou importar a pasta já instalada.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/bhuiyah/ff7-recomp-android#readme",
+            "https://github.com/bhuiyah/ff7-recomp-android/releases/tag/v1.1.49"
+          ],
+          "checked": "2026-11-25",
+          "note": "Recompila ff7_en.exe no próprio aparelho e usa FFNx, com mods, toque, controle e até 120 fps. Testado pelo mantenedor no AYN Thor; compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "jcoker85/FF7Recomp",
+          "filter": ".apk",
+          "verifiedTag": "v1.1.49",
+          "verifiedAssets": [
+            "FF7Recomp-1.1.49.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conflict-global-terror",
+      "title": "Conflict: Global Terror",
+      "aliases": [
+        "conflict global terror",
+        "cgt",
+        "cgt recomp"
+      ],
+      "genre": "Ação",
+      "platform": "Xbox",
+      "variants": [
+        {
+          "id": "potatorecomp/cgt-xberecomp",
+          "repo": "PotatoRecomp/CGT-XBERecomp",
+          "name": "CGT XBERecomp",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/PotatoRecomp/CGT-XBERecomp#android",
+          "requirements": "Android 10+, ARM64 e Vulkan 1.1.",
+          "gameFiles": "Cópia própria da edição Xbox USA, Title ID 0x5343000C, como ISO ou default.xbe acompanhado dos dados e arquivos de missão.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/PotatoRecomp/CGT-XBERecomp#readme",
+            "https://github.com/PotatoRecomp/CGT-XBERecomp/releases/tag/v1.1.1"
+          ],
+          "checked": "2026-11-25",
+          "note": "O APK importa a imagem pelo seletor do Android ou lê os dados em /storage/emulated/0/CGT. Compatibilidade física no Odin 2 Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": ".apk",
+          "verifiedTag": "v1.1.1",
+          "verifiedAssets": [
+            "app-release.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naruto-shippuden-ultimate-ninja-5",
+      "title": "Naruto Shippuden: Ultimate Ninja 5",
+      "aliases": [
+        "ultimate ninja 5",
+        "un5",
+        "hidden leaf",
+        "hiddenleaf"
+      ],
+      "genre": "Luta",
+      "platform": "PlayStation 2",
+      "variants": [
+        {
+          "id": "dfdx047/hiddenleaf",
+          "repo": "dfdx047/HiddenLeaf",
+          "name": "Hidden Leaf",
+          "kind": "RECOMP",
+          "stage": "Beta",
+          "setup": "EXTRA",
+          "channel": "BETA",
+          "guide": "https://github.com/dfdx047/HiddenLeaf#install-and-play",
+          "requirements": "Android 10+, ARM64. O APK contém caminhos ARMv8.2 e ARMv8.0 e oferece Vulkan ou OpenGL ES.",
+          "gameFiles": "ISO própria da edição europeia de Naruto Shippuden: Ultimate Ninja 5, SLES-55605.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/dfdx047/HiddenLeaf#readme",
+            "https://github.com/dfdx047/HiddenLeaf/releases/tag/v0.1.0-beta"
+          ],
+          "checked": "2026-11-25",
+          "note": "Inclui toque, controle, mods e jogo online. O mantenedor documenta testes no Odin 2 Mini e em outros portáteis, mas não no Odin 2 Portal Pro; compatibilidade física no Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": ".apk",
+          "verifiedTag": "v0.1.0-beta",
+          "verifiedAssets": [
+            "HiddenLeaf-v0.1.0-beta.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metal-gear-rising-revengeance",
+      "title": "Metal Gear Rising: Revengeance",
+      "aliases": [
+        "mgrr",
+        "metal gear rising",
+        "zandatsu"
+      ],
+      "genre": "Ação",
+      "platform": "Xbox 360",
+      "variants": [
+        {
+          "id": "dfdx047/zandatsu",
+          "repo": "dfdx047/Zandatsu",
+          "name": "Zandatsu",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/dfdx047/Zandatsu#instalar-e-importar-a-iso",
+          "requirements": "Android 11+, ARM64, Vulkan 1.3 e aproximadamente 8 GB livres para a ISO.",
+          "gameFiles": "ISO própria da edição Xbox 360 USA ou Europa, Title ID 4B4E080A.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/dfdx047/Zandatsu#readme",
+            "https://github.com/dfdx047/Zandatsu/releases/tag/v1.4"
+          ],
+          "checked": "2026-11-25",
+          "note": "Oferece renderizador nativo Vulkan e modo Xenia, toque, controle e seleção de Turnip. O mantenedor testou Adreno 740 no Odin 2 Mini e AYN Thor, mas não o Odin 2 Portal Pro; compatibilidade física no Portal Pro é desconhecida.",
+          "upstream": "",
+          "filter": ".apk",
+          "verifiedTag": "v1.4",
+          "verifiedAssets": [
+            "Zandatsu-v1.4.apk"
+          ],
+          "packageId": "",
+          "abis": [
+            "arm64-v8a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sengoku-basara-2-heroes",
+      "title": "Sengoku Basara 2 Heroes",
+      "aliases": [
+        "basara 2 heroes",
+        "sb2h",
+        "b2h wii"
+      ],
+      "genre": "Ação",
+      "platform": "Wii",
+      "variants": [
+        {
+          "id": "potatorecomp/b2hwii-android",
+          "repo": "PotatoRecomp/B2HWii-Android",
+          "name": "Sengoku Basara 2 Heroes Android",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/PotatoRecomp/B2HWii-Android#getting-started",
+          "requirements": "Android 10+, ARM64. Vulkan é recomendado; OpenGL ES está disponível como alternativa experimental.",
+          "gameFiles": "Dump próprio da edição Wii NTSC-J, ID RBSJ08, em ISO ou RVZ.",
+          "controller": "yes",
+          "evidence": [
+            "https://github.com/PotatoRecomp/B2HWii-Android#readme",
+            "https://github.com/PotatoRecomp/B2HWii-Android/releases/tag/v1.2.1-hotfix"
+          ],
+          "checked": "2026-11-25",
+          "note": "O jogo completo é documentado como jogável; a hotfix permite ler ISO/RVZ sem extrair. Há teste publicado em Snapdragon 8 Gen 2/Adreno 740 no RedMagic 8S Pro, mas não no Odin 2 Portal Pro; compatibilidade física no Portal Pro é desconhecida.",
+          "upstream": "WitherBlitz/NSMB-Wii-Multiplayer-Recompilation",
+          "filter": "android-arm64.apk",
+          "verifiedTag": "v1.2.1-hotfix",
+          "verifiedAssets": [
+            "basara2heroes-1.2.1-hotfix-android-arm64.apk"
           ],
           "packageId": "",
           "abis": [
