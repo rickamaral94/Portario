@@ -1,0 +1,76 @@
+name: Publish Portario beta 6
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish:
+    if: github.event.pull_request.head.ref == 'publish/beta-6-2026-11-25'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: rickamaral94/Portario
+      ARTIFACT_ID: '15015097656'
+      EXPECTED_COMMIT: 81b702bf5f92d875e405bb3485c403df57b5667d
+      EXPECTED_SHA256: 9551398c532fa0075086e10375ff38131210ed32653f6ec3a285b625f15ba9c9
+      TAG: v0.1.0-beta.6
+      APK_NAME: Portario-0.1.0-beta.6-debug.apk
+    steps:
+      - name: Download validated APK artifact
+        run: |
+          gh api -H 'Accept: application/vnd.github+json' /repos/$REPO/actions/artifacts/$ARTIFACT_ID/zip > artifact.zip
+          unzip -q artifact.zip -d artifact
+          cp artifact/Portario-debug.apk "$APK_NAME"
+      - name: Verify exact APK, package and version
+        run: |
+          echo "$EXPECTED_SHA256  $APK_NAME" | sha256sum -c -
+          AAPT=$(find "$ANDROID_HOME/build-tools" -type f -name aapt | sort -V | tail -1)
+          "$AAPT" dump badging "$APK_NAME" | grep -F "package: name='br.com.amaral.portario' versionCode='6' versionName='0.1.0-beta.6'"
+          unzip -p "$APK_NAME" assets/catalog.json | jq -e '.schema == 1 and (.games | length) == 116 and ([.games[].variants[]] | length) == 130' >/dev/null
+          printf '%s  %s\n' "$EXPECTED_SHA256" "$APK_NAME" > "$APK_NAME.sha256"
+      - name: Compare signing certificate with beta 5
+        id: signer
+        run: |
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -1)
+          CERT6=$("$APKSIGNER" verify --print-certs "$APK_NAME" 2>/dev/null | awk '/SHA-256/ {print $NF; exit}')
+          gh release download v0.1.0-beta.5 --repo "$REPO" --pattern '*.apk' --dir previous
+          PREV=$(find previous -type f -name '*.apk' -print -quit)
+          CERT5=$("$APKSIGNER" verify --print-certs "$PREV" 2>/dev/null | awk '/SHA-256/ {print $NF; exit}')
+          test -n "$CERT6"
+          test -n "$CERT5"
+          printf 'cert6=%s\ncert5=%s\n' "$CERT6" "$CERT5" >> "$GITHUB_OUTPUT"
+      - name: Publish prerelease
+        run: |
+          printf '%s\n' \
+            'Atualização de curadoria do catálogo embarcado.' \
+            '' \
+            'Incluídos:' \
+            '- Final Fantasy VII — FF7Recomp Android' \
+            '- Conflict: Global Terror — CGT XBERecomp' \
+            '- Naruto Shippuden: Ultimate Ninja 5 — Hidden Leaf' \
+            '- Metal Gear Rising: Revengeance — Zandatsu' \
+            '- Sengoku Basara 2 Heroes — Android recomp' \
+            '- Grand Theft Auto IV — variante XHYN IV' \
+            '' \
+            'Catálogo: 116 jogos e 130 variantes.' \
+            'Build: debug, gerada pelo GitHub Actions a partir do commit validado 81b702bf5f92d875e405bb3485c403df57b5667d.' \
+            'SHA-256: 9551398c532fa0075086e10375ff38131210ed32653f6ec3a285b625f15ba9c9.' \
+            '' > release-notes.md
+          if [ '${{ steps.signer.outputs.cert6 }}' != '${{ steps.signer.outputs.cert5 }}' ]; then
+            printf '%s\n' 'Atenção: a assinatura debug difere da beta.5; desinstale a versão anterior antes de instalar esta build. A biblioteca local será removida com a desinstalação.' >> release-notes.md
+          else
+            printf '%s\n' 'A assinatura debug coincide com a beta.5 e permite atualização por cima dela.' >> release-notes.md
+          fi
+          printf '%s\n%s\n' '' "Certificado SHA-256 desta build: ${{ steps.signer.outputs.cert6 }}." >> release-notes.md
+          gh release create "$TAG" "$APK_NAME" "$APK_NAME.sha256" --repo "$REPO" --target "$EXPECTED_COMMIT" --title 'Portário 0.1.0-beta.6' --notes-file release-notes.md --prerelease --latest=false
+      - name: Verify publication
+        run: |
+          test "$(gh release view "$TAG" --repo "$REPO" --json isPrerelease --jq '.isPrerelease|tostring')" = true
+          test "$(gh release view "$TAG" --repo "$REPO" --json isDraft --jq '.isDraft|tostring')" = false
+          gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name' | grep -Fx "$APK_NAME"
+          gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name' | grep -Fx "$APK_NAME.sha256"
