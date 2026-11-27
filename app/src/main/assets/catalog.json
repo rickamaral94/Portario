@@ -187,22 +187,25 @@
           "kind": "RECOMP",
           "stage": "Beta",
           "setup": "EXTRA",
-          "channel": "ALL",
-          "guide": "https://github.com/peiikai/LASRecomp#readme",
-          "requirements": "",
+          "channel": "STABLE",
+          "guide": "https://github.com/peiikai/LASRecomp/blob/main/docs/android.md",
+          "requirements": "Snapdragon 865 / Adreno 650 ou equivalente e 8 GB de RAM como referência para 720p. Consulte o guia sobre Vulkan e Turnip.",
           "gameFiles": "Dump da versão Switch de 2019. O guia informa versões e arquivos necessários.",
-          "controller": "",
+          "controller": "yes",
           "evidence": [
-            "https://github.com/peiikai/LASRecomp#readme",
-            "https://github.com/peiikai/LASRecomp/releases/tag/nightly"
+            "https://github.com/peiikai/LASRecomp/blob/main/docs/android.md",
+            "https://github.com/peiikai/LASRecomp/releases/tag/v0.6.1"
           ],
-          "checked": "2026-11-17",
-          "note": "",
+          "checked": "2026-11-27",
+          "note": "A versão regular publica APK Android e prepara o jogo no aparelho a partir dos arquivos extraídos pelo usuário. O nightly usa pacote separado. Compatibilidade no Odin 2 Portal Pro desconhecida.",
           "upstream": "",
-          "filter": "",
-          "verifiedTag": "nightly",
+          "filter": "-android.apk",
+          "verifiedTag": "v0.6.1",
           "verifiedAssets": [
-            "LAS.Recomp-nightly-202611171135-c2e7e27-android.apk"
+            "LAS.Recomp-v0.6.1-android.apk"
+          ],
+          "abis": [
+            "arm64-v8a"
           ]
         }
       ]
@@ -325,6 +328,32 @@
           "verifiedAssets": [
             "NFSU2-AndroidEvolved-v0.14.16-arm64.apk",
             "NFSU2-AndroidEvolved-v0.14.16-armeabi-v7a.apk"
+          ]
+        },
+        {
+          "id": "potatorecomp/underground-2-android",
+          "repo": "PotatoRecomp/Underground-2-Android",
+          "name": "Underground 2 Android · Xbox",
+          "kind": "RECOMP",
+          "stage": "Jogável",
+          "setup": "EXTRA",
+          "channel": "STABLE",
+          "guide": "https://github.com/PotatoRecomp/Underground-2-Android/releases/tag/v1.0.0",
+          "requirements": "Android 10+, ARM64 e Vulkan 1.1.",
+          "gameFiles": "Edição USA do Xbox original. Use a ISO própria ou default.xbe e a pasta NFSUNDER.",
+          "controller": "",
+          "evidence": [
+            "https://github.com/PotatoRecomp/Underground-2-Android/releases/tag/v1.0.0"
+          ],
+          "checked": "2026-11-27",
+          "note": "Variante do Xbox original. Usa arquivos diferentes da variante de PC. Compatibilidade no Odin 2 Portal Pro desconhecida.",
+          "filter": "Underground2-",
+          "verifiedTag": "v1.0.0",
+          "verifiedAssets": [
+            "Underground2-1.0.0.apk"
+          ],
+          "abis": [
+            "arm64-v8a"
           ]
         }
       ]
